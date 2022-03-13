@@ -1,15 +1,52 @@
+/**
+ @file      action.js
+ @brief     Print Deck Plugin
+ @copyright (c) 2022, Johnny Mast
+ @license   This source code is licensed under the MIT-style license found in the LICENSE file.
+ */
+
 class Action {
+
+  /**
+   * @classdesc
+   * Base class for all actions.
+   *
+   * @class Action
+   * @constructor
+   * @since 1.0.0
+   *
+   * @param {Object} options The options for the Action.
+   */
   constructor (options) {
-    this.websocket = null;
-    this.uuid = options.uuid || '';
-    this.port = options.port || -1;
+    this.uuid = options.uuid || ''
+    this.port = options.port || -1
+    this.websocket = options.websocket
 
     this.target = Object.freeze({ 'HARDWARE_AND_SOFTWARE': 0, 'HARDWARE_ONLY': 1, 'SOFTWARE_ONLY': 2 })
 
-    this.setupWebsocket();
+    this._createSocket()
   }
 
-  _onOpen(evt) {
+  /**
+   * Create a new websocket connection to the stream deck.
+   *
+   * @param {Object} evt The event object.
+   * @private
+   */
+  _createSocket () {
+    this.websocket.addEventListener('open', this._onOpen.bind(this))
+    this.websocket.addEventListener('close', this._onClose.bind(this))
+    this.websocket.addEventListener('error', this._onError.bind(this))
+    this.websocket.addEventListener('message', this._onMessage.bind(this))
+  }
+
+  /**
+   * Callback for when a Websocket connection opened.
+   *
+   * @param {Object} evt The event object.
+   * @private
+   */
+  _onOpen (evt) {
     console.log('[STREAMDECK]***** WEBOCKET OPENED ****', evt)
 
     var json = {
@@ -20,53 +57,101 @@ class Action {
     this.send(JSON.stringify(json))
   }
 
-  _onClose(evt) {
+  /**
+   * Callback for when a Websocket connection opened.
+   *
+   * @param {Object} evt The event object.
+   * @private
+   */
+  _onClose (evt) {
     console.log('[STREAMDECK]***** WEBOCKET CLOSED **** reason:', evt)
   }
 
-  _onError(evt) {
+  /**
+   * Callback for when a Websocket receives an error.
+   *
+   * @param {Object} evt The event object.
+   * @private
+   */
+  _onError (evt) {
     console.warn('WEBOCKET ERROR', evt, evt.data)
   }
 
-  _onMessage(evt) {
+  /**
+   * Callback for when a Websocket receives an message.
+   *
+   * @param {Object} evt The event object.
+   * @private
+   */
+  _onMessage (evt) {
 
     var jsonObj = JSON.parse(evt.data)
     var event = jsonObj['event']
 
-    console.log('event', event)
-    if (event == 'keyDown') {
-      this.onKeyDown(jsonObj)
-      console.log('ONMESSAGE: ', event)
-      console.log('jsonObj: ', jsonObj)
+    switch (event) {
+      case 'keyDown':
+        this.onKeyDown(jsonObj)
+        break
 
-      // loadAndSetImage(jsn.context, `images/piterminated.png`)
+      case 'keyUp':
+        this.onKeyUp(jsonObj)
+        break
 
-      // var data = canvas.toDataURL('image/png')
-      // setImage(jsonObj.context, data);
+      default:
+        console.warn('[NOT IMPLEMENTED] event: ', event)
+        break
     }
   }
 
-  setupWebsocket() {
+  /**
+   * Callback for when a Websocket receives an message.
+   *
+   * @param {Object} evt The event object.
+   * @public
+   */
+  setImage (context, imgData) {
 
-    if (this.websocket) {
-      this.websocket.close();
+    let json = {
+      'event': 'setImage',
+      'context': context,
+      'payload': {
+        'image': imgData,
+        'target': this.target.HARDWARE_AND_SOFTWARE
+      }
     }
 
-    this.websocket = new WebSocket('ws://127.0.0.1:' + this.port)
+    this.send(JSON.stringify(json))
+  };
 
-    this.websocket.addEventListener('open', this._onOpen.bind(this));
-    this.websocket.addEventListener('close', this._onClose.bind(this));
-    this.websocket.addEventListener('error', this._onError.bind(this));
-    this.websocket.addEventListener('message', this._onMessage.bind(this));
+  /**
+   * Send data over the websocket to the stream deck.
+   *
+   * @param {string} json The json string to send to the stream deck app.
+   * @public
+   */
+  send (json) {
+    this.websocket.send(json)
   }
 
-
-
-  onKeyDown(event, data) {
+  /**
+   * Callback for actions to overwrite, so they get notified when
+   * the button (key) is down.
+   *
+   * @param {Object} evt The event object.
+   * @public
+   */
+  onKeyDown (event) {
     // This will be overwritten
   }
 
-  send(json) {
-    this.websocket.send(json)
+  /**
+   * Callback for actions to overwrite, so they get notified when
+   * the button (key) is up.
+   *
+   * @param {Object} evt The event object.
+   * @public
+   */
+  onKeyUp (event) {
+    // This will be overwritten
   }
 }
