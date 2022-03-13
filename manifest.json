@@ -1,26 +1,29 @@
 {
   "Actions": [
     {
-      "Icon": "action/images/actionimage",
-      "Name": "PI Samples",
+      "Icon": "arrow_left_to_line",
+      "Name": "Show Progress",
       "States": [
         {
-          "Image": "action/images/image"
+          "Image": "action/images/actionProgressImage"
         }
       ],
-      "Tooltip": "PI Samples",
-      "UUID": "com.elgato.pisamples.action"
+      "SupportedInMultiActions": false,
+      "Tooltip": "Progress",
+      "UUID": "com.johnnymast.printdeck.progress"
     }
   ],
   "SDKVersion": 2,
   "Author": "Johnny Mast",
   "CodePath": "index.html",
-  "PropertyInspectorPath": "index_pi.html",
+  "PropertyInspectorPath": "propertyinspector/index.html",
   "Description": "See the progress of your 3d prints via Octoprint on your stream deck",
+  "Category": "Print Deck [Johnny Mast]",
+  "CategoryIcon": "Images/categoryIcon",
   "Name": "printdeck",
-  "Icon": "images/default",
-  "URL": "https://www.elgato.com/gaming/stream-deck",
-  "Version": "1.4",
+  "Icon": "octoprint-logo",
+  "URL": "https://github.com/johnnymast/printdeck",
+  "Version": "1.0",
   "OS": [
     {
       "Platform": "mac",

@@ -10,6 +10,17 @@
     </head>
     <body>
         <div class="sdpi-wrapper">
+
+            <div class="sdpi-item">
+                <div class="sdpi-item-label">Name</div>
+                <canvas id="CANVAS" width="200" height="200"></canvas>
+                <input class="sdpi-item-value" id="myname" value="" placeholder="Enter your name">
+            </div>
+            <div class="sdpi-item">
+                <div class="sdpi-item-label">Email</div>
+                <input class="sdpi-item-value" id="myemail" value="" placeholder="Enter your email-address">
+            </div>
+
     		<div class="sdpi-item" id="select_combo" style="visibility: hidden;">
 				<div class="sdpi-item-label" id="select_combo_label"></div>
 				<select class="sdpi-item-value select" id="currentSelectedID"></select>
@@ -31,5 +42,14 @@
         <script src="js/common.js"></script>
         <script src="js/common_pi.js"></script>
         <script src="js/index_pi.js"></script>
+    <script>
+      var canvas = document.getElementById('CANVAS');
+      console.log('canvas', canvas)
+
+      context = canvas.getContext("2d");
+      context.beginPath();
+      context.arc(100, 75, 50, 0, 2 * Math.PI);
+      context.stroke();
+    </script>
     </body>
     </html>
