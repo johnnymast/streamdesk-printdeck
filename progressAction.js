@@ -7,6 +7,8 @@
 
 class ProgressAction extends Action {
 
+  static actionUUID = 'com.johnnymast.printdeck.progress'
+
   /**
    * @classdesc
    * Displays the progress of your printer on a stream deck button.
@@ -17,11 +19,13 @@ class ProgressAction extends Action {
    *
    * @param {Object} options The options for the ProgressAction.
    */
-  constructor (options) {
-    super(options)
+  constructor () {
+    super()
 
-    this.buttonWidth = 144;
-    this.buttonHeight = 144;
+    this.actionUUID = 'com.johnnymast.printdeck.progress'
+
+    this.buttonWidth = 144
+    this.buttonHeight = 144
 
     this.canvas = document.createElement('CANVAS')
     this.canvas.width = this.buttonWidth
@@ -42,7 +46,10 @@ class ProgressAction extends Action {
     this.ctx.fillStyle = 'blue'
     this.ctx.fill()
 
-    this.setImage(evt.context, this.canvas.toDataURL('image/png'))
+    setTitle(this.context, 'Down', 0)
+    setImage(this.context, this.canvas.toDataURL('image/png'))
+    showAlert(this.context)
+    logMessage("Button down")
   }
 
   /**
@@ -58,6 +65,11 @@ class ProgressAction extends Action {
     this.ctx.fillStyle = 'green'
     this.ctx.fill()
 
-    this.setImage(evt.context, this.canvas.toDataURL('image/png'))
+    setTitle(this.context, 'Up', 1)
+    setImage(this.context, this.canvas.toDataURL('image/png'))
+    // openUrl(this.context, 'https://www.yahoo.com')
+    switchToProfile(this.context, StreamDeck.actionInfo.device, "Gaming")
+    //showOk(this.context)
+
   }
 }

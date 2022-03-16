@@ -5,7 +5,7 @@
         <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
         <meta name=apple-mobile-web-app-capable content=yes>
         <meta name=apple-mobile-web-app-status-bar-style content=black>
-        <title>tv.twitch.studio Property Inspector</title>
+        <title>com.johnnymast.printdeck Property Inspector</title>
         <link rel="stylesheet" href="css/sdpi.css">
 
     </head>
@@ -13,25 +13,31 @@
         <div class="sdpi-wrapper">
 
             <div class="sdpi-item">
-                <div class="sdpi-item-label">Name</div>
-                <canvas id="CANVAS" width="200" height="200"></canvas>
-                <input class="sdpi-item-value" id="myname" value="" placeholder="Enter your name">
-            </div>
-            <div class="sdpi-item">
-                <div class="sdpi-item-label">Email</div>
-                <input class="sdpi-item-value" id="myemail" value="" placeholder="Enter your email-address">
+                <div class="sdpi-item-label">Url</div>
+                <input class="sdpi-item-value inspector-value" id="webhookurl" type="text" value="https://" placeholder="Enter the webhook url">
             </div>
 
-    		<div class="sdpi-item" id="select_combo" style="visibility: hidden;">
-				<div class="sdpi-item-label" id="select_combo_label"></div>
-				<select class="sdpi-item-value select" id="currentSelectedID"></select>
-			</div>
-			
-			<div class="sdpi-item" id="select_sub_combo" style="visibility: hidden;">
-				<div class="sdpi-item-label" id="select_combo_sub_label"></div>
-				<select class="sdpi-item-value select" id="currentSelectedSubID"></select>
-			</div>
-			
+            <div class="sdpi-item" id="select_single">
+                <div class="sdpi-item-label">Select</div>
+                <select class="sdpi-item-value select inspector-value" id="webhookmethod">
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                </select>
+            </div>
+
+            <div type="textarea" class="sdpi-item">
+                <div class="sdpi-item-label up20">Webhook payload</div>
+                <div class="sdpi-item-value textarea">
+                    <textarea type="textarea" maxlength="500" id="webhookpayload" class="three-lines inspector-value">{}</textarea>
+                    <label for="webhookpayload">0/500</label>
+                </div>
+            </div>
+
+            <div class="sdpi-item">
+                <div class="sdpi-item-label">Are you done?</div>
+                <button class="sdpi-item-value" id="save" onclick="save()">Save</button>
+            </div>
+
 			<div class="sdpi-item" id="please_launch_warning" style="visibility: hidden;">
 				<details class="message caution">
 				<summary>Please launch Twitch Studio</summary>
@@ -41,10 +47,10 @@
 
         <div class="sdpi-info-label hidden" style="top: -1000;" value=""></div>
 
-        <script src="js/main.js"></script>
-<!--        <script src="js/common.js"></script>-->
-<!--        <script src="js/common_pi.js"></script>-->
-<!--        <script src="js/index_pi.js"></script>-->
+        <script src="../lib/event-emitter.js"></script>
+        <script src="../lib/stream-deck.js"></script>
+        <script src="../lib/utils.js"></script>
 
+        <script src="js/main.js" defer></script>
     </body>
     </html>

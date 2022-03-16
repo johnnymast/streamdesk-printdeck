@@ -5,8 +5,20 @@
  @license   This source code is licensed under the MIT-style license found in the LICENSE file.
  */
 
-var cache = []
-var websocket = null
+StreamDeck.onConnected(() => {
+
+  let options = {
+    // 'uuid': inPluginUUID,
+    // 'info': inApplicationInfo,
+    // 'port': inPort,
+  }
+
+  StreamDeck.addAction(new ProgressAction(options))
+})
+
+StreamDeck.on('willAppear', (evt) => {
+  console.log('Did receive willAppear', evt)
+})
 
 /**
  * This function is called by the Elgato plugin engine. This is the entry point to
@@ -14,24 +26,11 @@ var websocket = null
  *
  * @param {string} inPort The port used to create the WebSocket.
  * @param {string} inPluginUUID The unique identifier for this plugin.
- * @param {string} inApplicationInfo A JSON object containing information about the application.
- * @param {string} inActionInfo  A JSON object containing information about the action.
+ * @param {string} inRegisterEvent a string containing the register event to send to Stream Deck.
+ * @param {string} inInfo  A JSON object containing information about the action.
  */
-function connectElgatoStreamDeckSocket (inPort, inPluginUUID, inApplicationInfo, inActionInfo) {
-
-  if (websocket) {
-    websocket.close()
-  }
-
-  websocket = new WebSocket('ws://127.0.0.1:' + inPort)
-
-  let options = {
-    'websocket': websocket,
-    'uuid': inPluginUUID,
-    'info': inApplicationInfo,
-    'port': inPort,
-  }
-
-  cache[inPluginUUID] = new ProgressAction(options)
-
+function connectElgatoStreamDeckSocket (inPort, inPluginUUID, inRegisterEvent, inInfo) {
+  console.log('PLUGIN')
+  StreamDeck.identify(inPort, inPluginUUID, inRegisterEvent, inInfo, '{}')
+  StreamDeck.connect()
 }

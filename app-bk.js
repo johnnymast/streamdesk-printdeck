@@ -235,7 +235,7 @@ var action = {
 
 /** STREAM DECK COMMUNICATION */
 
-function sendToPropertyInspector(context, jsonData, xx) {
+function sendToPropertyInspectors(context, jsonData, xx) {
   var json = {
     'event': 'sendToPropertyInspector',
     'context': context,
