@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Octoprint</title>
+    <link rel="stylesheet" href="css/sdpi.css">
+    <script src="js/setup.js"></script>
+    <script src="js/api.js"></script>
+
+    <style>
+
+        .content {
+            max-width: 500px;
+            height: 100%;
+            width: 100%;
+            display: table;
+        }
+
+        .content .container {
+            padding-top: 10px;
+            margin: 0 auto;
+            width: 95%;
+        }
+
+        .content .container .border {
+            border: 1px solid rgb(60, 60, 60);
+            min-height: 625px;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class="content">
+    <div class="container">
+        <div class="border">
+
+
+            <div class="sdpi-wrapper">
+                <div style="text-align: center; margin-top:30px;">
+                    <img src="img/logo.png" style="height:150px; width: 150px; border-radius: 50%; border: 5px solid #ffffff;">
+                    <h1 style="font-size:50px; color:white; margin:10px;">OctoPrint</h1>
+                </div>
+
+                <div class="sdpi-item" id="caution" style="display: none;  margin-bottom: 10px;">
+                    <details class="message caution">
+                        <summary id="caution_message"></summary>
+                    </details>
+                </div>
+
+                <div class="sdpi-item" id="success" style="display: none; margin-bottom: 10px;">
+                    <details class="message caution">
+                        <summary id="success_message"></summary>
+                    </details>
+                </div>
+
+                <div class="sdpi-item">
+                    <div class="sdpi-item-label">Host or IP</div>
+                    <input class="sdpi-item-value" id="host" type="text" value="octopi.local"
+                           placeholder="Could be octopi.local">
+                </div>
+
+                <div class="sdpi-item">
+                    <div class="sdpi-item-label">Username</div>
+                    <input class="sdpi-item-value" id="username" type="text" value="admin"
+                           placeholder="Could be octopi.local">
+                </div>
+
+                <div class="sdpi-item">
+                    <div class="sdpi-item-label empty"></div>
+                    <button class="sdpi-item-value" id="save" onclick="connect()">Connect</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+  var PI = {}
+
+  const connect = () => {
+    const username = document.getElementById('username').value;
+    const host = document.getElementById('host').value;
+    return getApiKey('Print Deck', username, host)
+  }
+
+  window.onload = () => {
+    window.parent.postMessage('Message to the parent', "*");
+    console.log('message sent')
+
+  }
+  window.addEventListener('message', (event) => {
+    PI = event.source
+    console.log(event)
+
+    //PI.postMessage('Bleep', window.parent)
+  //  event.source.postMessage('ANSWER FROM POPUP.', "*")
+     console.log('got message in popup')
+
+  })
+</script>
+</body>
+</html>

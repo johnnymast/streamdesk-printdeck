@@ -6,14 +6,7 @@
  */
 
 StreamDeck.onConnected(() => {
-
-  let options = {
-    // 'uuid': inPluginUUID,
-    // 'info': inApplicationInfo,
-    // 'port': inPort,
-  }
-
-  StreamDeck.addAction(new ProgressAction(options))
+  StreamDeck.addAction(new ProgressAction)
 })
 
 StreamDeck.on('willAppear', (evt) => {
@@ -30,7 +23,7 @@ StreamDeck.on('willAppear', (evt) => {
  * @param {string} inInfo  A JSON object containing information about the action.
  */
 function connectElgatoStreamDeckSocket (inPort, inPluginUUID, inRegisterEvent, inInfo) {
-  console.log('PLUGIN')
+  greetDeveloper('PLUGIN')
   StreamDeck.identify(inPort, inPluginUUID, inRegisterEvent, inInfo, '{}')
   StreamDeck.connect()
 }
