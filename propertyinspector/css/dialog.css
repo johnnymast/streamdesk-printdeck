@@ -1,0 +1,17 @@
+.content {
+    max-width: 500px;
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+
+.content .container {
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 95%;
+}
+
+.content .container .border {
+    border: 1px solid rgb(60, 60, 60);
+    min-height: 625px;
+}

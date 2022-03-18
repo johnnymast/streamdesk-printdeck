@@ -5,7 +5,7 @@
  @license   This source code is licensed under the MIT-style license found in the LICENSE file.
  */
 
-var dialog = null
+let dialog = null
 
 /**
  * This function is called by the Elgato plugin engine. This is the entry point to
@@ -18,7 +18,20 @@ var dialog = null
  */
 StreamDeck.onConnected(() => {
 
-  console.log('inspector websocket connected')
+  window.addEventListener('message', (event) => {
+
+    let data = JSON.parse(event.data)
+
+    switch (data.type) {
+      case 'key':
+        alert('Save ' + data.apiKey)
+        break
+      case 'url':
+        openUrl(WebSocket.uuid, data.url)
+        break
+    }
+
+  }, false)
 
   restoreSettings(StreamDeck.actionInfo.payload.settings)
 })
@@ -26,45 +39,6 @@ StreamDeck.onConnected(() => {
 EventEmitter.on('sendToPropertyInspector', (evt) => {
   console.log('Did receive sendToPropertyInspector')
 })
-
-const restoreSettings = (settings) => {
-  Object.keys(settings).forEach((key) => {
-    let val = settings[key]
-    let elm = document.getElementById(key)
-    if (elm) {
-      elm.value = val
-    }
-  })
-}
-
-const save = () => {
-  let payload = {}
-  let domElements = document.querySelectorAll('.inspector-value')
-
-  domElements.forEach((elm) => {
-    payload[elm.id] = elm.value
-  })
-
-  setSettings(payload)
-  // sendToPlugin(StreamDeck.actionInfo.action, 'settings', payload)
-
-  console.log('saved')
-}
-
-const connectOctoPrint = () => {
-  dialog = window.open('../setup/index.html', '_blank')
-}
-
-window.addEventListener('message', (event) => {
-
-  let data = JSON.parse(event.data)
-
-  if (data.type == 'key') {
-    alert('Save ' + data.apiKey)
-  } else if (data.type == 'url') {
-    openUrl(WebSocket.uuid, data.url)
-  }
-}, false)
 
 /**
  * This function is called by the Elgato plugin engine. This is the entry point to

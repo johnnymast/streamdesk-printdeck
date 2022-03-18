@@ -5,7 +5,7 @@
         <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
         <meta name=apple-mobile-web-app-capable content=yes>
         <meta name=apple-mobile-web-app-status-bar-style content=black>
-        <title>com.johnnymast.printdeck Property Inspector</title>
+        <title>Print Deck Property Inspector</title>
         <link rel="stylesheet" href="css/sdpi.css">
 
     </head>
@@ -43,20 +43,14 @@
                 <button class="sdpi-item-value" id="save" onclick="save()">Save</button>
             </div>
 
-			<div class="sdpi-item" id="please_launch_warning" style="visibility: hidden;">
-				<details class="message caution">
-				<summary>Please launch Twitch Studio</summary>
-				</details>
-			</div>
  		</div>
-
-        <div class="sdpi-info-label hidden" style="top: -1000;" value=""></div>
 
         <script src="../lib/event-emitter.js"></script>
         <script src="../lib/stream-deck.js"></script>
         <script src="../lib/utils.js"></script>
         <script src="../lib/misc.js"></script>
-
-        <script src="js/main.js" defer></script>
+        <script src="js/events.js"></script>
+        <script src="js/settings.js"></script>
+        <script src="js/inspector.js" defer></script>
     </body>
     </html>
