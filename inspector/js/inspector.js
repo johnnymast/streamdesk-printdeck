@@ -5,8 +5,6 @@
  @license   This source code is licensed under the MIT-style license found in the LICENSE file.
  */
 
-let dialog = null
-
 /**
  * This function is called by the Elgato plugin engine. This is the entry point to
  * our plugin.
@@ -33,11 +31,16 @@ StreamDeck.onConnected(() => {
 
   }, false)
 
+  getGlobalSettings()
   restoreSettings(StreamDeck.actionInfo.payload.settings)
 })
 
 EventEmitter.on('sendToPropertyInspector', (evt) => {
   console.log('Did receive sendToPropertyInspector')
+})
+
+EventEmitter.on('didReceiveGlobalSettings', (evt) => {
+  console.log('Did receive global settings')
 })
 
 /**

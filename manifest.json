@@ -16,7 +16,7 @@
   "SDKVersion": 2,
   "Author": "Johnny Mast",
   "CodePath": "index.html",
-  "PropertyInspectorPath": "propertyinspector/index.html",
+  "PropertyInspectorPath": "inspector/index.html",
   "Description": "See the progress of your 3d prints via Octoprint on your stream deck",
   "Category": "Print Deck [Johnny Mast]",
   "CategoryIcon": "Images/categoryIcon",

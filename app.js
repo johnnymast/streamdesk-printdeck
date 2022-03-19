@@ -6,7 +6,7 @@
  */
 
 StreamDeck.onConnected(() => {
-  StreamDeck.addAction(new ProgressAction)
+  StreamDeck.registerAction(new ProgressAction)
 })
 
 StreamDeck.on('willAppear', (evt) => {
