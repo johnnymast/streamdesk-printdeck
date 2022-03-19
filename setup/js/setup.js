@@ -1,3 +1,10 @@
+/**
+ * Request an API key from OctoPrint.
+ *
+ * @param {string} app The name of the application.
+ * @param {string} user The username on the octoprint instance.
+ * @param {string} host The host to connect to.
+ */
 function getApiKey (app, user, host) {
 
   const interval = 1000
@@ -64,6 +71,11 @@ function getApiKey (app, user, host) {
     .catch(err => displayError(err))
 }
 
+/**
+ * Display an error message.
+ *
+ * @param {string} msg The message to display.
+ */
 displayError = (msg) => {
   let success = document.getElementById('success')
   let caution = document.getElementById('caution')
@@ -74,6 +86,11 @@ displayError = (msg) => {
   caution.style.display = 'block'
 }
 
+/**
+ * Display a success message.
+ *
+ * @param {string} msg The message to display.
+ */
 displayMessage = (msg) => {
   let success = document.getElementById('success')
   let caution = document.getElementById('caution')
@@ -84,11 +101,21 @@ displayMessage = (msg) => {
   success.style.display = 'block'
 }
 
+/**
+ * Set the API key for Octoprint. Close the window and report it to the inspector.
+ *
+ * @param {string} key The API key.
+ */
 function setAPIKey (key) {
-  window.opener.postMessage(JSON.stringify({ type: 'key', apiKey: key }), "*")
+  window.opener.postMessage(JSON.stringify({ type: 'key', apiKey: key }), '*')
   window.close()
 }
 
-function openURL(url) {
-  window.opener.postMessage(JSON.stringify({ type: 'url', url: url }), "*")
+/**
+ * Tell the Stream Deck inspector to open a url.
+ *
+ * @param {string} url The url to open in the default browser.
+ */
+function openURL (url) {
+  window.opener.postMessage(JSON.stringify({ type: 'url', url: url }), '*')
 }
