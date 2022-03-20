@@ -22,7 +22,7 @@ class ProgressAction extends Action {
   constructor () {
     super()
 
-    this.actionUUID = 'com.johnnymast.printdeck.progress'
+    this.actionUUID = 'com.johnnymast.printdeck.progress2'
 
     this.buttonWidth = 144
     this.buttonHeight = 144
@@ -58,12 +58,14 @@ class ProgressAction extends Action {
    * @param {Object} evt
    */
   onKeyUp (evt) {
-    console.log('KeyUp')
+    console.log('@@KeyUp')
 
     this.ctx.beginPath()
     this.ctx.rect(0, 0, this.canvas.width, this.canvas.height)
     this.ctx.fillStyle = 'green'
     this.ctx.fill()
+
+
 
     setTitle(this.context, 'Up', 1)
     setImage(this.context, this.canvas.toDataURL('image/png'))
@@ -71,5 +73,6 @@ class ProgressAction extends Action {
     switchToProfile(this.context, StreamDeck.actionInfo.device, "Gaming")
     //showOk(this.context)
 
+    getGlobalSettings();
   }
 }

@@ -10,7 +10,7 @@
       ],
       "SupportedInMultiActions": false,
       "Tooltip": "Progress",
-      "UUID": "com.johnnymast.printdeck.progress"
+      "UUID": "com.johnnymast.printdeck.progress2"
     }
   ],
   "SDKVersion": 2,
@@ -18,9 +18,9 @@
   "CodePath": "index.html",
   "PropertyInspectorPath": "inspector/index.html",
   "Description": "See the progress of your 3d prints via Octoprint on your stream deck",
-  "Category": "Print Deck [Johnny Mast]",
+  "Category": "Print Deck",
   "CategoryIcon": "Images/categoryIcon",
-  "Name": "printdeck",
+  "Name": "printdecks",
   "Icon": "octoprint-logo",
   "URL": "https://github.com/johnnymast/printdeck",
   "Version": "1.0",

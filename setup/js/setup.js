@@ -16,6 +16,8 @@ function getApiKey (app, user, host) {
     host = host.replace('https://', '')
   }
 
+  let name = host;
+
   OctoPrintRest.webhost = `http://${host}/`
   OctoPrintRest.probe().then((response) => {
     if (response.ok == false) {
@@ -48,7 +50,7 @@ function getApiKey (app, user, host) {
                 displayMessage('ACCEPTED')
 
                 response.json().then((apiKey) => {
-                  setAPIKey(apiKey.api_key)
+                  setAPIKey(apiKey.api_key, name)
                 })
 
                 clearInterval(handle)
@@ -106,8 +108,8 @@ displayMessage = (msg) => {
  *
  * @param {string} key The API key.
  */
-function setAPIKey (key) {
-  window.opener.postMessage(JSON.stringify({ type: 'key', apiKey: key }), '*')
+function setAPIKey (key, host) {
+  window.opener.postMessage(JSON.stringify({ type: 'key', host: host, apiKey: key }), '*')
   window.close()
 }
 
