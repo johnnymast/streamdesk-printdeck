@@ -1,5 +1,5 @@
 /**
- @file      main.js
+ @file      inspector.js
  @brief     Print Deck Plugin
  @copyright (c) 2022, Johnny Mast
  @license   This source code is licensed under the MIT-style license found in the LICENSE file.
@@ -58,7 +58,6 @@ StreamDeck.onConnected(() => {
 })
 
 EventEmitter.on('didReceiveGlobalSettings', (evt) => {
-  console.log('ok settings are in')
   if (!evt.payload.settings) {
     console.log('Setting default options')
     setGlobalSettings({
@@ -81,9 +80,8 @@ EventEmitter.on('didReceiveGlobalSettings', (evt) => {
  * @param {string} inInfo  A JSON object containing information about the application.
  * @param {string} inActionInfo  A JSON object containing information about the action.
  */
-//
 function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegisterEvent, inInfo, inActionInfo) {
-  greetDeveloper('INSPECTOR', inActionInfo)
+  greetDeveloper('INSPECTOR')
   StreamDeck.identify(inPort, inPropertyInspectorUUID, inRegisterEvent, inInfo, inActionInfo)
   StreamDeck.connect()
 }

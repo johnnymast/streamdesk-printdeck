@@ -1,18 +1,29 @@
+/**
+ @file      settings.js
+ @brief     Print Deck Plugin
+ @copyright (c) 2022, Johnny Mast
+ @license   This source code is licensed under the MIT-style license found in the LICENSE file.
+ */
+
+/**
+ * Restore the settings and set the form values in inspector/index.html.
+ *
+ * @param {Object} settings An object containing values to restore.
+ */
 const restoreSettings = (settings) => {
-  console.log('RESTORING', settings)
   Object.keys(settings).forEach((key) => {
     let val = settings[key]
     let elm = document.getElementById(key)
     if (elm) {
       elm.value = val
-    } else {
-      console.trace('no elm!!!', key)
     }
   })
-
-  console.log('Settings restored')
 }
 
+/**
+ * Save the inspector values (from the form) and send the values
+ * to Stream Deck.
+ */
 const save = () => {
   let payload = {}
   let domElements = document.querySelectorAll('.inspector-value')
@@ -21,12 +32,13 @@ const save = () => {
     payload[elm.id] = elm.value
   })
 
-  console.log('payload', payload)
   setSettings(payload)
-
-  console.log('saved')
 }
 
+/**
+ * Populate the instances' dropdown with values previously stored
+ * in globalSettings.
+ */
 const populateHosts = () => {
   let select = document.getElementById('apikey')
   let hosts = Storage.get('hosts', [])
@@ -53,13 +65,5 @@ const populateHosts = () => {
     } else {
       select.setAttribute('disabled', 'disabled')
     }
-
-    console.log('Hosts populated')
   }
 }
-
-document.getElementById('apikey').addEventListener('change', (evt) => {
-  if (evt.target.value == 'addnew') {
-    //connectOctoPrint()
-  }
-})

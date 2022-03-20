@@ -8,11 +8,6 @@
 class Action {
 
   static actionUUID = ''
-  static context = '';
-
-  setContext(context) {
-    this.context = context;
-  }
 
   /**
    * Callback for actions to overwrite, so they get notified when

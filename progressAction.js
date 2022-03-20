@@ -51,7 +51,6 @@ class ProgressAction extends Action {
     this.ctx.fill()
 
     console.log('keyDown')
-    // switchToProfile("A1E4F3BC-A88D-44CF-B0F1-BA15DE3524A8")
     // setTitle('Down', 0)
     // setImage(this.canvas.toDataURL('image/png'), 0)
     //  showAlert()

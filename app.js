@@ -9,10 +9,6 @@ StreamDeck.onConnected(() => {
   StreamDeck.registerAction(new ProgressAction)
 })
 
-StreamDeck.on('willAppear', (evt) => {
-  console.log('Did receive willAppear', evt)
-})
-
 /**
  * This function is called by the Elgato plugin engine. This is the entry point to
  * our plugin.

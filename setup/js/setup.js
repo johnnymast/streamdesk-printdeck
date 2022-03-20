@@ -1,4 +1,11 @@
 /**
+ @file      setup.js
+ @brief     Print Deck Plugin
+ @copyright (c) 2022, Johnny Mast
+ @license   This source code is licensed under the MIT-style license found in the LICENSE file.
+ */
+
+/**
  * Request an API key from OctoPrint.
  *
  * @param {string} app The name of the application.
