@@ -59,7 +59,6 @@ StreamDeck.onConnected(() => {
 
 EventEmitter.on('didReceiveGlobalSettings', (evt) => {
   if (!evt.payload.settings) {
-    console.log('Setting default options')
     setGlobalSettings({
       hosts: []
     })

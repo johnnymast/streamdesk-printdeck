@@ -6,7 +6,23 @@
  */
 
 StreamDeck.onConnected(() => {
+  getGlobalSettings()
+  getSettings()
+
   StreamDeck.registerAction(new ProgressAction)
+  StreamDeck.registerAction(new OpenOctoPrintAction)
+})
+
+EventEmitter.on('willAppear', (evt) => {
+  if (typeof StreamDeck.actionInfo.payload !== 'undefined') {
+    Storage.values = StreamDeck.actionInfo.payload.settings
+  }
+})
+
+EventEmitter.on('didReceiveGlobalSettings', (evt) => {
+  if (evt.payload.settings.hosts) {
+    Storage.set('hosts', evt.payload.settings.hosts)
+  }
 })
 
 /**

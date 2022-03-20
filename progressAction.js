@@ -7,8 +7,6 @@
 
 class ProgressAction extends Action {
 
-  static actionUUID = 'com.johnnymast.printdeck.progress'
-
   /**
    * @classdesc
    * Displays the progress of your printer on a stream deck button.
@@ -16,8 +14,6 @@ class ProgressAction extends Action {
    * @class ProgressAction
    * @constructor
    * @since 1.0.0
-   *
-   * @param {Object} options The options for the ProgressAction.
    */
   constructor () {
     super()
@@ -32,8 +28,6 @@ class ProgressAction extends Action {
     this.canvas.height = this.buttonHeight
 
     this.ctx = this.canvas.getContext('2d')
-
-    console.log('ctx', this.ctx)
   }
 
   /**
