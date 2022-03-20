@@ -60,6 +60,6 @@ const populateHosts = () => {
 
 document.getElementById('apikey').addEventListener('change', (evt) => {
   if (evt.target.value == 'addnew') {
-    connectOctoPrint()
+    //connectOctoPrint()
   }
 })

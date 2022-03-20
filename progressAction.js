@@ -22,7 +22,7 @@ class ProgressAction extends Action {
   constructor () {
     super()
 
-    this.actionUUID = 'com.johnnymast.printdeck.progress2'
+    this.actionUUID = 'com.johnnymast.printdeck.progress'
 
     this.buttonWidth = 144
     this.buttonHeight = 144
@@ -32,6 +32,8 @@ class ProgressAction extends Action {
     this.canvas.height = this.buttonHeight
 
     this.ctx = this.canvas.getContext('2d')
+
+    console.log('ctx', this.ctx)
   }
 
   /**
@@ -41,14 +43,18 @@ class ProgressAction extends Action {
    */
   onKeyDown (evt) {
 
+    console.log(this.canvas.width)
+
     this.ctx.beginPath()
     this.ctx.rect(0, 0, this.canvas.width, this.canvas.height)
     this.ctx.fillStyle = 'blue'
     this.ctx.fill()
 
-    setTitle(this.context, 'Down', 0)
-    setImage(this.context, this.canvas.toDataURL('image/png'))
-    showAlert(this.context)
+    console.log('keyDown')
+    // switchToProfile("A1E4F3BC-A88D-44CF-B0F1-BA15DE3524A8")
+    // setTitle('Down', 0)
+    // setImage(this.canvas.toDataURL('image/png'), 0)
+    //  showAlert()
     logMessage("Button down")
   }
 
@@ -58,7 +64,9 @@ class ProgressAction extends Action {
    * @param {Object} evt
    */
   onKeyUp (evt) {
-    console.log('@@KeyUp')
+    console.log('KeyUp')
+
+
 
     this.ctx.beginPath()
     this.ctx.rect(0, 0, this.canvas.width, this.canvas.height)
@@ -67,12 +75,12 @@ class ProgressAction extends Action {
 
 
 
-    setTitle(this.context, 'Up', 1)
-    setImage(this.context, this.canvas.toDataURL('image/png'))
-    // openUrl(this.context, 'https://www.yahoo.com')
-    switchToProfile(this.context, StreamDeck.actionInfo.device, "Gaming")
-    //showOk(this.context)
+    setTitle('Up', 1)
+    // setImage(this.canvas.toDataURL('image/png'), 1)
+  //  openUrl('https://www.yahoo.com')
 
+    // showOk(this.context)
+    // logMessage("Button up")
     getGlobalSettings();
   }
 }
