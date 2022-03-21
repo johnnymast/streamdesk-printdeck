@@ -1,7 +1,7 @@
 {
   "SDKVersion": 2,
   "Author": "Johnny Mast",
-  "CodePath": "index.html",
+  "CodePath": "plugin/index.html",
   "PropertyInspectorPath": "inspector/index.html",
   "Description": "See the progress of your 3d prints via Octoprint on your stream deck",
   "Category": "Print Deck",
@@ -26,11 +26,11 @@
   },
   "Actions": [
     {
-      "Icon": "arrow_left_to_line",
+      "Icon": "action/images/actionProgressImage",
       "Name": "Show Progress",
       "States": [
         {
-          "Image": "action/images/actionProgressImage"
+          "Image": "action/images/keyProgressImage"
         }
       ],
       "SupportedInMultiActions": false,
@@ -38,14 +38,14 @@
       "UUID": "com.johnnymast.printdeck.progress"
     },
     {
-      "Icon": "arrow_left_to_line",
+      "Icon": "action/images/actionInstanceImage",
       "Name": "Open Octoprint",
       "States": [
         {
-          "Image": "action/images/actionProgressImage"
+          "Image": "action/images/keyInstanceImage"
         }
       ],
-      "SupportedInMultiActions": false,
+      "SupportedInMultiActions": true,
       "Tooltip": "Open OctoPrint",
       "UUID": "com.johnnymast.printdeck.openportal"
     }

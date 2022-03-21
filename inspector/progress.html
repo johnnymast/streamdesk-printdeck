@@ -1,0 +1,21 @@
+<div class="sdpi-wrapper">
+    <div class="sdpi-item" id="select_combo">
+        <div class="sdpi-item-label">Instance</div>
+        <select class="sdpi-item-value select inspector-value" id="apikey" disabled>
+            <option value="noinstanced">No instances</option>
+            <option value="addnew">Add new</option>
+        </select>
+        <button class="sdpi-item-value" value="ClickMe" onclick="connectOctoPrint()">Connect</button>
+    </div>
+    <div class="sdpi-item" id="select_single">
+        <div class="sdpi-item-label">Style</div>
+        <select class="sdpi-item-value select inspector-value" id="style">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+        </select>
+    </div>
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Are you done?</div>
+        <button class="sdpi-item-value" id="save" onclick="save()">Save</button>
+    </div>
+</div>

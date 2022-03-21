@@ -67,3 +67,22 @@ const populateHosts = () => {
     }
   }
 }
+
+/**
+ * Load an inspector form.
+ *
+ * @param {string} url The url to load.
+ */
+const loadInspectorPage = (url) => {
+  const xhttp = new XMLHttpRequest()
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4) {
+      let container = document.getElementById('inspector_page_content')
+      if (container) {
+        container.innerHTML = this.responseText
+      }
+    }
+  }
+  xhttp.open('GET', url, true)
+  xhttp.send()
+}

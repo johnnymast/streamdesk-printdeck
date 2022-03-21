@@ -16,7 +16,7 @@ var instanceSettings = null
  * @param {string} inApplicationInfo A JSON object containing information about the application.
  * @param {string} inActionInfo  A JSON object containing information about the action.
  */
-StreamDeck.onConnected(() => {
+StreamDeck.onConnected(async () => {
 
   window.addEventListener('message', (event) => {
 
@@ -53,6 +53,18 @@ StreamDeck.onConnected(() => {
    * StreamDeck.actionInfo.payload.settings will be overwritten.
    */
   instanceSettings = StreamDeck.actionInfo.payload.settings
+
+  if (typeof  StreamDeck.actionInfo.action !== 'undefined') {
+    switch(StreamDeck.actionInfo.action) {
+      case 'com.johnnymast.printdeck.progress':
+        loadInspectorPage('./progress.html')
+        break;
+      case 'com.johnnymast.printdeck.openportal':
+        loadInspectorPage('./openportal.html')
+        break;
+
+    }
+  }
 
   restoreSettings(instanceSettings)
 })
