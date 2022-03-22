@@ -37,6 +37,7 @@ class ProgressAction extends Action {
     // TODO: Send error to inspector with reset instructions.
     // TODO: Add host to settings data.
     // TODO: Maybe add websockets connection?
+    // http://localhost:23654/
 
     this.actionUUID = 'com.johnnymast.printdeck.progress'
     this.settings = settings
