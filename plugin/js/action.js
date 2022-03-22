@@ -8,6 +8,7 @@
 class Action {
 
   static actionUUID = ''
+  static settings = null
 
   /**
    * Callback for actions to overwrite, so they get notified when
