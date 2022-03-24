@@ -15,10 +15,12 @@ class OpenOctoPrintAction extends Action {
    * @constructor
    * @since 1.0.0
    */
-  constructor () {
+  constructor (context, settings) {
     super()
 
     this.actionUUID = 'com.johnnymast.printdeck.openportal'
+    this.context = context
+    this.settings = settings
   }
 
   /**
@@ -27,18 +29,8 @@ class OpenOctoPrintAction extends Action {
    * @param {Object} evt
    */
   onKeyUp (evt) {
-    let hosts = Storage.get('hosts', null)
-    let apiKey = Storage.get('apikey')
 
-    let webLocation = null
-
-    if (hosts) {
-      hosts.forEach((host) => {
-        if (webLocation === null && host.key == apiKey) {
-          webLocation = `http://${host.host}`
-        }
-      })
-    }
+    let webLocation = this.settings.host || ''
 
     if (webLocation) {
       openUrl(webLocation)

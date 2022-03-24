@@ -60,10 +60,10 @@ StreamDeck.onConnected(async () => {
   if (typeof StreamDeck.actionInfo.action !== 'undefined') {
     switch (StreamDeck.actionInfo.action) {
       case 'com.johnnymast.printdeck.progress':
-        loadInspectorPage('./progress.html')
+        loadInspectorPage('./progress.html', StreamDeck.actionInfo.action)
         break
       case 'com.johnnymast.printdeck.openportal':
-        loadInspectorPage('./openportal.html')
+        loadInspectorPage('./openportal.html', StreamDeck.actionInfo.action)
         break
 
     }
@@ -73,7 +73,6 @@ StreamDeck.onConnected(async () => {
 })
 
 EventEmitter.on('sendToPropertyInspector', (evt) => {
-  console.log('@@sendToPropertyInspector', evt.payload)
   if (evt.payload.type) {
     switch (evt.payload.type) {
       case 'error':

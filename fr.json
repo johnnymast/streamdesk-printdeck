@@ -1,0 +1,33 @@
+{
+  "Name": "Print Deck",
+  "Description": "See the progress of your 3d prints via Octoprint on your stream deck",
+  "Category": "Print Deck",
+  "com.johnnymast.printdeck.progress": {
+    "Name": "Show Print progress",
+    "Tooltip": "Show the OctoPrint progression on your Stream Deck"
+  },
+  "com.johnnymast.printdeck.openportal": {
+    "Name": "Open OctoPrint page",
+    "Tooltip": "Open your OctoPrint page in your web browser."
+  },
+  "inspector": {
+    "com.johnnymast.printdeck.progress": {
+      "Host": "Host",
+      "API Key": "API Key",
+      "Connect": "Connect",
+      "Press Connect to obtain": "Press Connect to obtain"
+    },
+    "com.johnnymast.printdeck.openportal": {
+      "Host": "Host",
+      "Connect": "Connect",
+      "Press Connect to obtain": "Press Connect to obtain"
+    }
+  },
+  "plugin": {
+    "com.johnnymast.printdeck.progress": {
+      "There was an error connecting to webhost. Hold how the button on your Stream Deck for 3 seconds to try again.": "There was an error connecting to webhost. Hold how the button on your Stream Deck for 3 seconds to try again.",
+      "reset": "reset",
+      "error": "error"
+    }
+  }
+}

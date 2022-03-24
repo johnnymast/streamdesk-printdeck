@@ -5,8 +5,6 @@
  @license   This source code is licensed under the MIT-style license found in the LICENSE file.
  */
 
-
-
 StreamDeck.onConnected(() => {
   getGlobalSettings()
   getSettings()
@@ -14,15 +12,16 @@ StreamDeck.onConnected(() => {
   // StreamDeck.registerAction(new ProgressAction)
   StreamDeck.registerAction(new OpenOctoPrintAction)
 })
-//
-EventEmitter.on('willAppear', (evt) => {
-  console.log('willAppear', StreamDeck.actionInfo)
-  if (typeof StreamDeck.actionInfo.payload !== 'undefined') {
-    let action = StreamDeck.actionInfo.action;
-    let context = StreamDeck.actionInfo.context;
 
-    if (action == 'com.johnnymast.printdeck.progress') {
-      StreamDeck.registerAction(context, new ProgressAction(context, StreamDeck.actionInfo.payload.settings));
+EventEmitter.on('willAppear', (evt) => {
+  if (typeof StreamDeck.actionInfo.payload !== 'undefined') {
+    let action = StreamDeck.actionInfo.action
+    let context = StreamDeck.actionInfo.context
+
+    if (action === 'com.johnnymast.printdeck.progress') {
+      StreamDeck.registerAction(context, new ProgressAction(context, StreamDeck.actionInfo.payload.settings))
+    } else if (action === 'com.johnnymast.printdeck.openportal') {
+      StreamDeck.registerAction(context, new OpenOctoPrintAction(context, StreamDeck.actionInfo.payload.settings))
     }
   }
 })

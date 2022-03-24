@@ -1,16 +1,11 @@
 <div class="sdpi-wrapper">
-    <div class="sdpi-item" id="select_combo">
-        <div class="sdpi-item-label">Instance</div>
-        <select class="sdpi-item-value select inspector-value" id="apikey" disabled>
-            <option value="noinstanced">No instances</option>
-            <option value="addnew">Add new</option>
-        </select>
-        <button class="sdpi-item-value" value="ClickMe" onclick="connectOctoPrint()">Connect</button>
+    <div class="sdpi-item" id="hostname">
+        <div class="sdpi-item-label inspector-translatable" data-text="Host"></div>
+        <input id="host" type="text" class="inspector-value inspector-translatable" data-placeholder="Press Connect to obtain" value="" />
     </div>
 
-
     <div class="sdpi-item">
-        <div class="sdpi-item-label">Are you done?</div>
-        <button class="sdpi-item-value" id="save" onclick="save()">Save</button>
+        <div class="sdpi-item-label empty"></div>
+        <button class="sdpi-item-value inspector-translatable" id="connect" onclick="connectOctoPrint()" data-text="Connect">Connect</button>
     </div>
 </div>

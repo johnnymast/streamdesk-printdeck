@@ -11,8 +11,6 @@
  * @param {Object} settings An object containing values to restore.
  */
 const restoreSettings = (settings) => {
-
-  console.log('restoreSettings', settings)
   Object.keys(settings).forEach((key) => {
     let val = settings[key]
     let elm = document.getElementById(key)
@@ -34,7 +32,7 @@ const saveProgress = () => {
     payload[elm.id] = elm.value
   })
 
-  displayMessage('Changes are saved');
+  displayMessage('Changes are saved')
   setSettings(payload)
 }
 
@@ -80,14 +78,16 @@ const populateHosts = () => {
  * Load an inspector form.
  *
  * @param {string} url The url to load.
+ * @param {string} action The action the panel belongs to.
  */
-const loadInspectorPage = (url) => {
+const loadInspectorPage = (url, action) => {
   const xhttp = new XMLHttpRequest()
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
       let container = document.getElementById('inspector_page_content')
       if (container) {
         container.innerHTML = this.responseText
+        Localization.localizeInspector(action)
       }
     }
   }

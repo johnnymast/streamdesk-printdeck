@@ -89,11 +89,12 @@ class ProgressAction extends Action {
         }).catch((err) => {
           StreamDeck.debug(`Error: Could not reach ${this.webhost}`)
 
-          setTitle(this.context, 'error')
+          setTitle(this.context, Localization.localizePluginText(this.actionUUID, 'error'))
           showAlert(this.context)
+
           sendToPropertyInspector(this.actionUUID, this.context, {
             type: 'error',
-            message: `There was an error connecting to ${this.webhost}. Hold how the button on your Stream Deck for 3 seconds to try again.`
+            message: Localization.localizePluginText(this.actionUUID, "There was an error connecting to webhost. Hold how the button on your Stream Deck for 3 seconds to try again.")
           })
 
           this.hasError = true
@@ -134,7 +135,7 @@ class ProgressAction extends Action {
     let delta = now - this.buttonPressed
 
     if (this.hasError == true && delta > this.resetInterval) {
-      setTitle(this.context, 'reset')
+      setTitle(this.context, Localization.localizePluginText(this.actionUUID, 'reset'))
       showOk(this.context)
 
       sendToPropertyInspector(this.actionUUID, this.context, { type: 'hide_error' })
