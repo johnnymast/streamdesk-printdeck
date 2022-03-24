@@ -1,21 +1,24 @@
 <div class="sdpi-wrapper">
-    <div class="sdpi-item" id="select_combo">
-        <div class="sdpi-item-label">Instance</div>
-        <select class="sdpi-item-value select inspector-value" id="apikey" disabled>
-            <option value="noinstanced">No instances</option>
-            <option value="addnew">Add new</option>
-        </select>
-        <button class="sdpi-item-value" value="ClickMe" onclick="connectOctoPrint()">Connect</button>
+
+    <div class="sdpi-item" id="hostname">
+        <div class="sdpi-item-label">Host</div>
+        <input id="host" type="text" class="inspector-value" placeholder="Press Connect to obtain" value="" />
     </div>
-    <div class="sdpi-item" id="select_single">
-        <div class="sdpi-item-label">Style</div>
-        <select class="sdpi-item-value select inspector-value" id="style">
-            <option value="GET">GET</option>
-            <option value="POST">POST</option>
-        </select>
-    </div>
+
     <div class="sdpi-item">
-        <div class="sdpi-item-label">Are you done?</div>
-        <button class="sdpi-item-value" id="save" onclick="save()">Save</button>
+        <div class="sdpi-item-label">API Key</div>
+        <input id="apikey" type="text" class="inspector-value" placeholder="Press Connect to obtain" value="" />
     </div>
+
+    <div class="sdpi-item">
+        <div class="sdpi-item-label empty"></div>
+        <button class="sdpi-item-value" id="connect" onclick="connectOctoPrint()">Connect</button>
+    </div>
+
+    <!--
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Reset settings</div>
+        <button class="sdpi-item-value" id="reset" onclick="resetSettings()">Reset</button>
+    </div>
+    -->
 </div>

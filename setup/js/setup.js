@@ -23,8 +23,6 @@ function getApiKey (app, user, host) {
     host = host.replace('https://', '')
   }
 
-  let name = host;
-
   OctoPrintRest.webhost = `http://${host}/`
   OctoPrintRest.probe().then((response) => {
     if (response.ok == false) {
@@ -57,7 +55,7 @@ function getApiKey (app, user, host) {
                 displayMessage('ACCEPTED')
 
                 response.json().then((apiKey) => {
-                  setAPIKey(apiKey.api_key, name)
+                  setAPIKey(apiKey.api_key, OctoPrintRest.webhost)
                 })
 
                 clearInterval(handle)
@@ -81,42 +79,12 @@ function getApiKey (app, user, host) {
 }
 
 /**
- * Display an error message.
- *
- * @param {string} msg The message to display.
- */
-displayError = (msg) => {
-  let success = document.getElementById('success')
-  let caution = document.getElementById('caution')
-  let caution_message = document.getElementById('caution_message')
-
-  caution_message.innerText = msg
-  success.style.display = 'none'
-  caution.style.display = 'block'
-}
-
-/**
- * Display a success message.
- *
- * @param {string} msg The message to display.
- */
-displayMessage = (msg) => {
-  let success = document.getElementById('success')
-  let caution = document.getElementById('caution')
-  let success_message = document.getElementById('success_message')
-
-  success_message.innerText = msg
-  caution.style.display = 'none'
-  success.style.display = 'block'
-}
-
-/**
  * Set the API key for Octoprint. Close the window and report it to the inspector.
  *
  * @param {string} key The API key.
  */
 function setAPIKey (key, host) {
-  window.opener.postMessage(JSON.stringify({ type: 'key', host: host, apiKey: key }), '*')
+  window.opener.postMessage(JSON.stringify({ type: 'key', webhost: host, apiKey: key, source: 'connectToOctoPrint' }), '*')
   window.close()
 }
 
@@ -126,5 +94,5 @@ function setAPIKey (key, host) {
  * @param {string} url The url to open in the default browser.
  */
 function openURL (url) {
-  window.opener.postMessage(JSON.stringify({ type: 'url', url: url }), '*')
+  window.opener.postMessage(JSON.stringify({ type: 'url', url: url,  source: 'connectToOctoPrint' }), '*')
 }

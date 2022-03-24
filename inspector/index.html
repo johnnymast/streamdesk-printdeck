@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
-        <meta name=apple-mobile-web-app-capable content=yes>
-        <meta name=apple-mobile-web-app-status-bar-style content=black>
-        <title>Print Deck Property Inspector</title>
-        <link rel="stylesheet" href="css/sdpi.css">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name=viewport
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <title>Print Deck Property Inspector</title>
+    <link rel="stylesheet" href="css/sdpi.css">
 
-    </head>
-    <body>
+</head>
+<body>
 
-        <div id="inspector_page_content"></div>
+<div class="sdpi-item" id="caution" style="display: none;  margin-bottom: 10px;">
+    <details class="message caution">
+        <summary id="caution_message"></summary>
+    </details>
+</div>
 
-        <script src="../lib/storage.js"></script>
-        <script src="../lib/event-emitter.js"></script>
-        <script src="../lib/stream-deck.js"></script>
-        <script src="../lib/utils.js"></script>
-        <script src="../lib/misc.js"></script>
-        <script src="js/connect.js"></script>
-        <script src="js/settings.js"></script>
-        <script src="js/inspector.js" defer></script>
-    </body>
-    </html>
+<div class="sdpi-item" id="success" style="display: none; margin-bottom: 10px;">
+    <details class="message caution">
+        <summary id="success_message"></summary>
+    </details>
+</div>
+<div id="inspector_page_content"></div>
+<script src="../lib/storage.js"></script>
+<script src="../lib/event-emitter.js"></script>
+<script src="../lib/stream-deck.js"></script>
+<script src="../lib/utils.js"></script>
+<script src="../lib/misc.js"></script>
+<script src="js/forms.js"></script>
+<script src="js/connect.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/inspector.js" defer></script>
+</body>
+</html>

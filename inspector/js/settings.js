@@ -11,6 +11,8 @@
  * @param {Object} settings An object containing values to restore.
  */
 const restoreSettings = (settings) => {
+
+  console.log('restoreSettings', settings)
   Object.keys(settings).forEach((key) => {
     let val = settings[key]
     let elm = document.getElementById(key)
@@ -24,7 +26,7 @@ const restoreSettings = (settings) => {
  * Save the inspector values (from the form) and send the values
  * to Stream Deck.
  */
-const save = () => {
+const saveProgress = () => {
   let payload = {}
   let domElements = document.querySelectorAll('.inspector-value')
 
@@ -32,7 +34,13 @@ const save = () => {
     payload[elm.id] = elm.value
   })
 
+  displayMessage('Changes are saved');
   setSettings(payload)
+}
+
+const resetSettings = () => {
+  setSettings(null)
+  setGlobalSettings(null)
 }
 
 /**

@@ -22,25 +22,28 @@ StreamDeck.onConnected(async () => {
 
     let data = JSON.parse(event.data)
 
-    switch (data.type) {
-      case 'key':
-        let hosts = Storage.get('hosts', [])
-        hosts.push({
-          host: data.host,
-          key: data.apiKey
-        })
+    if (data.source == 'connectToOctoPrint') {
+      switch (data.type) {
+        case 'key':
 
-        Storage.set('hosts', hosts);
-        setGlobalSettings(Storage.values)
+          let select = document.getElementById('apikey')
+          let host = document.getElementById('host')
 
-        let select = document.getElementById('apikey')
-        if (select) {
-          select.value = data.apiKey
-        }
-        break
-      case 'url':
-        openUrl(data.url)
-        break
+          if (select) {
+            select.value = data.apiKey
+          }
+
+          if (host) {
+            host.value = data.webhost
+          }
+
+          saveProgress()
+          break
+        case 'url':
+          console.log('openurl', data.url)
+          openUrl(data.url)
+          break
+      }
     }
 
   }, false)
@@ -54,19 +57,33 @@ StreamDeck.onConnected(async () => {
    */
   instanceSettings = StreamDeck.actionInfo.payload.settings
 
-  if (typeof  StreamDeck.actionInfo.action !== 'undefined') {
-    switch(StreamDeck.actionInfo.action) {
+  if (typeof StreamDeck.actionInfo.action !== 'undefined') {
+    switch (StreamDeck.actionInfo.action) {
       case 'com.johnnymast.printdeck.progress':
         loadInspectorPage('./progress.html')
-        break;
+        break
       case 'com.johnnymast.printdeck.openportal':
         loadInspectorPage('./openportal.html')
-        break;
+        break
 
     }
   }
 
   restoreSettings(instanceSettings)
+})
+
+EventEmitter.on('sendToPropertyInspector', (evt) => {
+  console.log('@@sendToPropertyInspector', evt.payload)
+  if (evt.payload.type) {
+    switch (evt.payload.type) {
+      case 'error':
+        displayError(evt.payload.message)
+        break
+      case 'hide_error':
+        hideError()
+        break
+    }
+  }
 })
 
 EventEmitter.on('didReceiveGlobalSettings', (evt) => {
@@ -75,6 +92,7 @@ EventEmitter.on('didReceiveGlobalSettings', (evt) => {
       hosts: []
     })
   }
+
   Storage.values = evt.payload.settings
 
   populateHosts()

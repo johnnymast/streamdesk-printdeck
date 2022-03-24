@@ -33,75 +33,73 @@ class ProgressAction extends Action {
    */
   constructor (context, settings) {
     super()
-
-    // TODO: Send error to inspector with reset instructions.
-    // TODO: Add host to settings data.
+    
     // TODO: Maybe add websockets connection?
     // http://localhost:23654/
 
     this.actionUUID = 'com.johnnymast.printdeck.progress'
     this.settings = settings
     this.context = context
-    this.resetInterval = 3000 // 3 seconds
+    this.resetInterval = 2000 // 2 seconds
 
     this.webhost = null
     this.hasError = false
+    this.didConnect = false
 
-    EventEmitter.on('com.johnnymast.printdeck.progress.start_polling', () => {
-      let hosts = Storage.get('hosts') || []
-      let apiKey = this.settings.apikey || ''
-      let webHost = null
+    let apiKey = this.settings.apikey || ''
+    let webHost = this.settings.host || ''
 
-      Object.values(hosts).forEach((host) => {
-        if (host.key == apiKey) {
-          webHost = `http://${host.host}/`
+    this.webhost = webHost
+
+    if (this.webhost) {
+      var api = new OctoPrintProgressionPol(this.webhost)
+
+      setInterval(async () => {
+        if (this.hasError == true) {
+          return false
         }
-      })
 
-      this.webhost = webHost
+        api.getJob(apiKey).then((response) => {
+          if (response) {
 
-      if (webHost) {
-        var api = new OctoPrintProgressionPol(webHost)
+            this.didConnect = true
 
-        setInterval(async () => {
-          if (this.hasError == true) {
-            return false
+            response.json().then((data) => {
+              var progress = data.state
+
+              switch (progress) {
+                case 'Printing':
+                  progress = parseFloat(data.progress.completion)
+                  progress = progress.toFixed(1) + '%'
+                  break
+
+                default:
+                  /**
+                   * Maybe we extend the switch further one day.
+                   * We might be able to show custom icons based o n
+                   * the progress.
+                   */
+                  progress = 'done'
+                  break
+              }
+
+              setTitle(this.context, progress)
+            })
           }
+        }).catch((err) => {
+          StreamDeck.debug(`Error: Could not reach ${this.webhost}`)
 
-          api.getJob(apiKey).then((response) => {
-            if (response) {
-              response.json().then((data) => {
-                var progress = data.state
-
-                switch (progress) {
-                  case 'Printing':
-                    progress = parseFloat(data.progress.completion)
-                    progress = Math.floor(progress) + '%'
-                    break
-
-                  default:
-                    /**
-                     * Maybe we extend the switch further one day.
-                     * We might be able to show custom icons based o n
-                     * the progress.
-                     */
-                    progress = 'done'
-                    break
-                }
-
-                setTitle(this.context, progress)
-              })
-            }
-          }).catch((err) => {
-            StreamDeck.debug(`Error: Could not reach ${this.webhost}`)
-            setTitle(this.context, 'error')
-            showAlert(this.context)
-
-            this.hasError = true
+          setTitle(this.context, 'error')
+          showAlert(this.context)
+          sendToPropertyInspector(this.actionUUID, this.context, {
+            type: 'error',
+            message: `There was an error connecting to ${this.webhost}. Hold how the button on your Stream Deck for 3 seconds to try again.`
           })
-        }, 5000)
-      }
-    })
+
+          this.hasError = true
+        })
+      }, 5000)
+    }
   }
 
   /**
@@ -115,10 +113,11 @@ class ProgressAction extends Action {
 
     if (this.hasError == false) {
 
-      if (this.webhost) {
+      if (this.webhost && this.didConnect == true) {
         StreamDeck.debug(`${this.actionUUID} Opening url to webhost ${this.webhost}.`)
-        openUrl(this.context, this.webhost)
+        openUrl(this.webhost)
       } else {
+        console.log(this.webhost, this.didConnect)
         StreamDeck.debug(`${this.actionUUID} cannot open url cause: webhost not found.`)
         showAlert(this.context)
       }
@@ -134,10 +133,14 @@ class ProgressAction extends Action {
     let now = performance.now()
     let delta = now - this.buttonPressed
 
-    if (delta > this.resetInterval) {
+    if (this.hasError == true && delta > this.resetInterval) {
       setTitle(this.context, 'reset')
       showOk(this.context)
 
+      sendToPropertyInspector(this.actionUUID, this.context, { type: 'hide_error' })
+
+      this.buttonPressed = 0
+      this.didConnect = false
       this.hasError = false
     }
   }
