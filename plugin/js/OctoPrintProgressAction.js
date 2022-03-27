@@ -5,29 +5,13 @@
  @license   This source code is licensed under the MIT-style license found in the LICENSE file.
  */
 
-class OctoPrintProgressionPol {
-
-  constructor (webhost) {
-    this.webhost = webhost
-  }
-
-  async getJob (apiKey) {
-    return fetch(this.webhost + '/api/job', {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Api-Key': apiKey
-      },
-    })
-  }
-}
-
-class ProgressAction extends Action {
+class OctoPrintProgressAction extends Action {
 
   /**
    * @classdesc
    * Displays the progress of your printer on a stream deck button.
    *
-   * @class ProgressAction
+   * @class OctoPrintProgressAction
    * @constructor
    * @since 1.0.0
    */
@@ -37,7 +21,7 @@ class ProgressAction extends Action {
     // TODO: Maybe add websockets connection?
     // http://localhost:23654/
 
-    this.actionUUID = 'com.johnnymast.printdeck.progress'
+    this.actionUUID = 'com.johnnymast.printdeck.octoprint_progress'
     this.settings = settings
     this.context = context
     this.resetInterval = 2000 // 2 seconds
@@ -52,7 +36,7 @@ class ProgressAction extends Action {
     this.webhost = webHost
 
     if (this.webhost) {
-      var api = new OctoPrintProgressionPol(this.webhost)
+      var api = new OctoPrintRest(this.webhost)
 
       setInterval(async () => {
         if (this.hasError == true) {
@@ -114,7 +98,7 @@ class ProgressAction extends Action {
 
     if (this.hasError == false) {
 
-      if (this.webhost && this.didConnect == true) {
+      if (this.webhost && this.didConnect === true) {
         StreamDeck.debug(`${this.actionUUID} Opening url to webhost ${this.webhost}.`)
         openUrl(this.webhost)
       } else {

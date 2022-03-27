@@ -35,7 +35,7 @@
         }
       ],
       "SupportedInMultiActions": false,
-      "UUID": "com.johnnymast.printdeck.progress"
+      "UUID": "com.johnnymast.printdeck.octoprint_progress"
     },
     {
       "Icon": "action/images/actionInstanceImage",
@@ -47,7 +47,31 @@
         }
       ],
       "SupportedInMultiActions": true,
-      "UUID": "com.johnnymast.printdeck.openportal"
+      "UUID": "com.johnnymast.printdeck.octoprint_openaction"
+    },
+    {
+      "Icon": "action/images/actionTemperatureImage",
+      "Name": "Set temperature",
+      "Tooltip": "Set the temperature for your printer.",
+      "States": [
+        {
+          "Image": "action/images/keyTemperatureImage"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "UUID": "com.johnnymast.printdeck.octoprint_set_temperature"
+    },
+    {
+      "Icon": "action/images/actionCoolDownImage",
+      "Name": "Cooldown",
+      "Tooltip": "Cool down your printer.",
+      "States": [
+        {
+          "Image": "action/images/keyCooldownImage"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "UUID": "com.johnnymast.printdeck.octoprint_cooldown"
     }
   ]
 }

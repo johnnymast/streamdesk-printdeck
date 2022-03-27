@@ -7,6 +7,22 @@
     <script src="../inspector/js/forms.js"></script>
     <script src="js/setup.js"></script>
     <script src="js/api.js"></script>
+    <style>
+        .content {
+            width: 375px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .content .border {
+            height: 100%
+        }
+
+        .content .sdpi-wrapper {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
 <div class="content">
@@ -45,13 +61,14 @@
 
                 <div class="sdpi-item">
                     <div class="sdpi-item-label empty"></div>
-                    <button class="sdpi-item-value" id="save" onclick="connect()">Connect</button>
+                    <button class="sdpi-item-value" id="save" type="submit" onclick="connect()">Connect</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
+
   const connect = () => {
     const username = document.getElementById('username').value
     const host = document.getElementById('host').value

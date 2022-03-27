@@ -5,20 +5,20 @@
  @license   This source code is licensed under the MIT-style license found in the LICENSE file.
  */
 
-class OpenOctoPrintAction extends Action {
+class OctoPrintOpenAction extends Action {
 
   /**
    * @classdesc
    * Open OctoPrint in the web browser.
    *
-   * @class ProgressAction
+   * @class OctoPrintProgressAction
    * @constructor
    * @since 1.0.0
    */
   constructor (context, settings) {
     super()
 
-    this.actionUUID = 'com.johnnymast.printdeck.openportal'
+    this.actionUUID = 'com.johnnymast.printdeck.octoprint_openaction'
     this.context = context
     this.settings = settings
   }

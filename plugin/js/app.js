@@ -10,7 +10,7 @@ StreamDeck.onConnected(() => {
   getSettings()
 
   // StreamDeck.registerAction(new ProgressAction)
-  StreamDeck.registerAction(new OpenOctoPrintAction)
+  // StreamDeck.registerAction(new OctoPrintOpenAction)
 })
 
 EventEmitter.on('willAppear', (evt) => {
@@ -18,10 +18,14 @@ EventEmitter.on('willAppear', (evt) => {
     let action = StreamDeck.actionInfo.action
     let context = StreamDeck.actionInfo.context
 
-    if (action === 'com.johnnymast.printdeck.progress') {
-      StreamDeck.registerAction(context, new ProgressAction(context, StreamDeck.actionInfo.payload.settings))
-    } else if (action === 'com.johnnymast.printdeck.openportal') {
-      StreamDeck.registerAction(context, new OpenOctoPrintAction(context, StreamDeck.actionInfo.payload.settings))
+    if (action === 'com.johnnymast.printdeck.octoprint_progress') {
+      StreamDeck.registerAction(context, new OctoPrintProgressAction(context, StreamDeck.actionInfo.payload.settings))
+    }
+    else if (action === 'com.johnnymast.printdeck.octoprint_set_temperature') {
+      StreamDeck.registerAction(context, new OctoPrintProgressAction(context, StreamDeck.actionInfo.payload.settings))
+    }
+    else if (action === 'com.johnnymast.printdeck.octoprint_openaction') {
+      StreamDeck.registerAction(context, new OctoPrintOpenAction(context, StreamDeck.actionInfo.payload.settings))
     }
   }
 })

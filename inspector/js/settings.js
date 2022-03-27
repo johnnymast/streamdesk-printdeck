@@ -24,7 +24,7 @@ const restoreSettings = (settings) => {
  * Save the inspector values (from the form) and send the values
  * to Stream Deck.
  */
-const saveProgress = () => {
+const saveSettings = (silent = false) => {
   let payload = {}
   let domElements = document.querySelectorAll('.inspector-value')
 
@@ -32,7 +32,9 @@ const saveProgress = () => {
     payload[elm.id] = elm.value
   })
 
-  displayMessage('Changes are saved')
+  if (silent === false) {
+    displayMessage('Changes are saved')
+  }
   setSettings(payload)
 }
 
@@ -88,9 +90,41 @@ const loadInspectorPage = (url, action) => {
       if (container) {
         container.innerHTML = this.responseText
         Localization.localizeInspector(action)
+        injectStreamDeckTitleStyle()
       }
     }
   }
   xhttp.open('GET', url, true)
   xhttp.send()
+}
+
+/**
+ * Elgato has some information about the colors
+ * of the buttons that overwrite the default style.
+ * I suggest this is because of the different colors of stream
+ * deck modules they sell. This function injects the custom styles
+ * into the inspector window.
+ */
+const injectStreamDeckTitleStyle = () => {
+  if (typeof StreamDeck.appInfo.colors !== 'undefined') {
+    let colors = StreamDeck.appInfo.colors
+    let styleElm = document.querySelector('style[id="inline_style"]')
+
+    let style = `
+      ::selection {
+         color: ${colors.highlightColor};
+      }
+
+      button:hover {
+        background-color: ${colors.buttonMouseOverBackgroundColor};
+      }
+
+      button:active {
+        background-color: ${colors.buttonPressedBackgroundColor};
+        border-color: ${colors.buttonPressedBorderColor};
+        color: ${colors.buttonPressedTextColor};
+      }`
+
+    styleElm.innerHTML = style
+  }
 }

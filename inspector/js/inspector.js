@@ -37,7 +37,7 @@ StreamDeck.onConnected(async () => {
             host.value = data.webhost
           }
 
-          saveProgress()
+          saveSettings()
           break
         case 'url':
           console.log('openurl', data.url)
@@ -56,16 +56,17 @@ StreamDeck.onConnected(async () => {
    * StreamDeck.actionInfo.payload.settings will be overwritten.
    */
   instanceSettings = StreamDeck.actionInfo.payload.settings
-
   if (typeof StreamDeck.actionInfo.action !== 'undefined') {
     switch (StreamDeck.actionInfo.action) {
-      case 'com.johnnymast.printdeck.progress':
-        loadInspectorPage('./progress.html', StreamDeck.actionInfo.action)
+      case 'com.johnnymast.printdeck.octoprint_progress':
+        loadInspectorPage('./octoprint_progress.html', StreamDeck.actionInfo.action)
         break
-      case 'com.johnnymast.printdeck.openportal':
-        loadInspectorPage('./openportal.html', StreamDeck.actionInfo.action)
+      case 'com.johnnymast.printdeck.octoprint_openaction':
+        loadInspectorPage('./octoprint_openaction.html', StreamDeck.actionInfo.action)
         break
-
+      case 'com.johnnymast.printdeck.octoprint_set_temperature':
+        loadInspectorPage('./octoprint_set_temperature.html', StreamDeck.actionInfo.action)
+        break
     }
   }
 

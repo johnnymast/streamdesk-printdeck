@@ -10,6 +10,5 @@
  * Open the "Connect to Octoprint dialog".
  */
 const connectOctoPrint = () => {
-  window.open('../setup/index.html', '_blank')
-
+  window.open('../setup/index.html', '_blank', 'width=175,height=375')
 }

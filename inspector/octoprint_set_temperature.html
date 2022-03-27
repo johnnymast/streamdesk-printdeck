@@ -1,0 +1,34 @@
+<div class="sdpi-wrapper">
+
+    <div class="sdpi-item" id="hostname">
+        <div class="sdpi-item-label inspector-translatable" data-text="Host"></div>
+        <input id="host" type="text" class="inspector-value inspector-translatable" data-placeholder="Press Connect to obtain" value="" />
+    </div>
+
+    <div class="sdpi-item">
+        <div class="sdpi-item-label inspector-translatable" data-text="API Key"></div>
+        <input id="apikey" type="text" class="inspector-value inspector-translatable" data-placeholder="Press Connect to obtain" value="" />
+    </div>
+
+    <div class="sdpi-item">
+        <div class="sdpi-item-label inspector-translatable" data-text="Hotend Temp"></div>
+        <input id="hotend_temp" type="number"  onkeyup="saveSettings(true)" class="inspector-value inspector-translatable" value="205" />
+    </div>
+
+    <div class="sdpi-item">
+        <div class="sdpi-item-label inspector-translatable" data-text="Bed Temp"></div>
+        <input id="bed_temp" type="number" onkeyup="saveSettings(true)" class="inspector-value inspector-translatable" value="60" />
+    </div>
+
+    <div class="sdpi-item">
+        <div class="sdpi-item-label empty"></div>
+        <button class="sdpi-item-value inspector-translatable" id="connect" onclick="connectOctoPrint()" data-text="Connect">Connect</button>
+    </div>
+
+    <!--
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Reset settings</div>
+        <button class="sdpi-item-value" id="reset" onclick="resetSettings()">Reset</button>
+    </div>
+    -->
+</div>
