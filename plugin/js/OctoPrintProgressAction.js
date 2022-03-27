@@ -1,5 +1,5 @@
 /**
- @file      action.js
+ @file      OctoPrintProgressAction.js
  @brief     Print Deck Plugin
  @copyright (c) 2022, Johnny Mast
  @license   This source code is licensed under the MIT-style license found in the LICENSE file.

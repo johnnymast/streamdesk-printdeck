@@ -10,5 +10,9 @@
  * Open the "Connect to Octoprint dialog".
  */
 const connectOctoPrint = () => {
-  window.open('../setup/index.html', '_blank', 'width=175,height=375')
+  let dialog = window.open('../setup/index.html', '_blank', 'width=175,height=375')
+
+  dialog.onload = () => {
+    dialog.postMessage({'type': 'colors', 'colors': StreamDeck.appInfo.colors}, '*');
+  }
 }

@@ -1,9 +1,28 @@
+/**
+ @file      OctoPrintRest.js
+ @brief     Print Deck Plugin
+ @copyright (c) 2022, Johnny Mast
+ @license   This source code is licensed under the MIT-style license found in the LICENSE file.
+ */
+
 class OctoPrintRest {
 
+  /**
+   * Constructor with the webhost.
+   *
+   * @param {string} }webhost The webhost of the OctoPrint instance.
+   */
   constructor (webhost) {
     this.webhost = webhost
   }
 
+  /**
+   * Get the current active job from OctoPrint.
+   *
+   * @param {string} apiKey The api key to use for this request.
+   *
+   * @returns {Promise<Response>}
+   */
   async getJob (apiKey) {
     return fetch(this.webhost + '/api/job', {
       headers: {
@@ -41,6 +60,7 @@ class OctoPrintRest {
    *
    * @param {number} temp The temperature to set for the bed.
    * @param {string} apiKey The api key to use for this request.
+   *
    * @returns {Promise<Response>}
    */
   async setHotEndTemperature (temp, apiKey) {

@@ -10,6 +10,14 @@
     "Name": "Open OctoPrint page",
     "Tooltip": "Open your OctoPrint page in your web browser."
   },
+  "com.johnnymast.printdeck.octoprint_set_temperature": {
+    "Name": "Set temperature",
+    "Tooltip": "Set the temperature for your printer."
+  },
+  "com.johnnymast.printdeck.octoprint_cooldown": {
+    "Name": "Cooldown",
+    "Tooltip": "Cool down your printer."
+  },
   "inspector": {
     "com.johnnymast.printdeck.octoprint_openaction": {
       "Host": "Host",
@@ -19,6 +27,20 @@
     },
     "com.johnnymast.printdeck.octoprint_openaction": {
       "Host": "Host",
+      "Connect": "Connect",
+      "Press Connect to obtain": "Press Connect to obtain"
+    },
+    "com.johnnymast.printdeck.octoprint_set_temperature": {
+      "Host": "Host",
+      "API Key": "API Key",
+      "Connect": "Connect",
+      "Press Connect to obtain": "Press Connect to obtain",
+      "Hotend Temp": "Hotend Temp",
+      "Bed Temp": "Bed Temp"
+    },
+    "com.johnnymast.printdeck.octoprint_cooldown": {
+      "Host": "Host",
+      "API Key": "API Key",
       "Connect": "Connect",
       "Press Connect to obtain": "Press Connect to obtain"
     }

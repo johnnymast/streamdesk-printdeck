@@ -67,6 +67,9 @@ StreamDeck.onConnected(async () => {
       case 'com.johnnymast.printdeck.octoprint_set_temperature':
         loadInspectorPage('./octoprint_set_temperature.html', StreamDeck.actionInfo.action)
         break
+      case 'com.johnnymast.printdeck.octoprint_cooldown':
+        loadInspectorPage('./octoprint_cooldown.html', StreamDeck.actionInfo.action)
+        break
     }
   }
 

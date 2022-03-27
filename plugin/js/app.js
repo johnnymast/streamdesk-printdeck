@@ -18,14 +18,22 @@ EventEmitter.on('willAppear', (evt) => {
     let action = StreamDeck.actionInfo.action
     let context = StreamDeck.actionInfo.context
 
-    if (action === 'com.johnnymast.printdeck.octoprint_progress') {
-      StreamDeck.registerAction(context, new OctoPrintProgressAction(context, StreamDeck.actionInfo.payload.settings))
-    }
-    else if (action === 'com.johnnymast.printdeck.octoprint_set_temperature') {
-      StreamDeck.registerAction(context, new OctoPrintProgressAction(context, StreamDeck.actionInfo.payload.settings))
-    }
-    else if (action === 'com.johnnymast.printdeck.octoprint_openaction') {
-      StreamDeck.registerAction(context, new OctoPrintOpenAction(context, StreamDeck.actionInfo.payload.settings))
+    switch (action) {
+      case 'com.johnnymast.printdeck.octoprint_progress':
+        StreamDeck.registerAction(context, new OctoPrintProgressAction(context, StreamDeck.actionInfo.payload.settings))
+        break
+
+      case 'com.johnnymast.printdeck.octoprint_set_temperature':
+        StreamDeck.registerAction(context, new OctoPrintSetTemperatureAction(context, StreamDeck.actionInfo.payload.settings))
+        break
+
+      case 'com.johnnymast.printdeck.octoprint_cooldown':
+        StreamDeck.registerAction(context, new OctoPrintCooldownAction(context, StreamDeck.actionInfo.payload.settings))
+        break
+
+      case 'com.johnnymast.printdeck.octoprint_openaction':
+        StreamDeck.registerAction(context, new OctoPrintOpenAction(context, StreamDeck.actionInfo.payload.settings))
+        break
     }
   }
 })

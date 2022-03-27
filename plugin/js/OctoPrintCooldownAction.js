@@ -1,11 +1,11 @@
 /**
- @file      action.js
+ @file      OctoPrintCooldownAction.js
  @brief     Print Deck Plugin
  @copyright (c) 2022, Johnny Mast
  @license   This source code is licensed under the MIT-style license found in the LICENSE file.
  */
 
-class OctoPrintSetTemperatureAction extends Action {
+class OctoPrintCooldownAction extends Action {
 
   /**
    * @classdesc
@@ -17,7 +17,8 @@ class OctoPrintSetTemperatureAction extends Action {
    */
   constructor (context, settings) {
     super()
-    this.actionUUID = 'com.johnnymast.printdeck.octoprint_set_temperature'
+
+    this.actionUUID = 'com.johnnymast.printdeck.octoprint_cooldown'
     this.settings = settings
     this.context = context
 
@@ -26,8 +27,8 @@ class OctoPrintSetTemperatureAction extends Action {
     this.options = {
       apikey: this.settings.apikey || '',
       webhost: this.settings.host || '',
-      bedTemp: parseInt(this.settings.bed_temp) || 65,
-      hotEndTemp: parseInt(this.settings.hotend_temp) || 205
+      bedTemp: 0,
+      hotEndTemp: 0
     }
 
     if (this.options.webhost) {
@@ -50,6 +51,8 @@ class OctoPrintSetTemperatureAction extends Action {
       }).catch(() => {
         showAlert(this.context)
       })
+
+      console.log('onKeyUp')
     }
   }
 }

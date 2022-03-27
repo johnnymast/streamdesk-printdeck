@@ -25,8 +25,8 @@ function getApiKey (app, user, host) {
 
   OctoPrintRest.webhost = `http://${host}/`
   OctoPrintRest.probe().then((response) => {
-    if (response.ok == false) {
-      if (response.status == 404) {
+    if (response.ok === false) {
+      if (response.status === 404) {
         displayError('Did you disable the Application key plugin?')
       }
       return false

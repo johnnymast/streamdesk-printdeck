@@ -85,7 +85,7 @@ const populateHosts = () => {
 const loadInspectorPage = (url, action) => {
   const xhttp = new XMLHttpRequest()
   xhttp.onreadystatechange = function () {
-    if (this.readyState == 4) {
+    if (this.readyState === 4) {
       let container = document.getElementById('inspector_page_content')
       if (container) {
         container.innerHTML = this.responseText

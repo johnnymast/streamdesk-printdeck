@@ -4,25 +4,13 @@
     <meta charset="UTF-8">
     <title>Connect to Octoprint</title>
     <link rel="stylesheet" href="css/sdpi.css">
+    <link rel="stylesheet" href="css/setup.css">
     <script src="../inspector/js/forms.js"></script>
+    <script src="../lib/misc.js"></script>
     <script src="js/setup.js"></script>
     <script src="js/api.js"></script>
-    <style>
-        .content {
-            width: 375px;
-            margin: 0 auto;
-            text-align: center;
-            margin-top: 10px;
-        }
 
-        .content .border {
-            height: 100%
-        }
-
-        .content .sdpi-wrapper {
-            margin-top: 30px;
-        }
-    </style>
+    <style id="inline_style"></style>
 </head>
 <body>
 <div class="content">
@@ -69,11 +57,52 @@
 </div>
 <script>
 
+  greetDeveloper("SETUP")
+
+  window.addEventListener('keydown', (evt) => {
+    if (evt.keyCode === 13) {
+      connect()
+    }
+  })
+
+  const injectCSS = (colors) => {
+    if (colors !== 'undefined') {
+      let styleElm = document.querySelector('style[id="inline_style"]')
+
+      let style = `
+      ::selection {
+         color: ${colors.highlightColor};
+      }
+
+      button:hover {
+        background-color: ${colors.buttonMouseOverBackgroundColor};
+      }
+
+      button:active {
+        background-color: ${colors.buttonPressedBackgroundColor};
+        border-color: ${colors.buttonPressedBorderColor};
+        color: ${colors.buttonPressedTextColor};
+      }`
+
+      styleElm.innerHTML = style
+    }
+  }
+
   const connect = () => {
     const username = document.getElementById('username').value
     const host = document.getElementById('host').value
     return getApiKey('Print Deck', username, host)
   }
+
+  window.addEventListener("message", (evt) => {
+    let data = evt.data;
+
+    if (typeof data.type !== 'undefined') {
+      if (data.type === 'colors') {
+        injectCSS(data.colors)
+      }
+    }
+  }, false)
 </script>
 </body>
 </html>
