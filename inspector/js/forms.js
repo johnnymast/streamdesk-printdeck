@@ -1,5 +1,13 @@
+/**
+ @file      forms.js
+ @brief     Print Deck Plugin
+ @copyright (c) 2022, Johnny Mast
+ @license   This source code is licensed under the MIT-style license found in the LICENSE file.
+ */
 
-
+/**
+ * Hide the caution/error message element.
+ */
 const hideError = () => {
   let caution = document.getElementById('caution')
   if (caution) {
@@ -7,6 +15,9 @@ const hideError = () => {
   }
 }
 
+/**
+ * Hide the success message element.
+ */
 const hideMessage = () => {
   let success = document.getElementById('success')
   if (success) {

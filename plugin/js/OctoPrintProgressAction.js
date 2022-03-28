@@ -39,7 +39,7 @@ class OctoPrintProgressAction extends Action {
       var api = new OctoPrintRest(this.webhost)
 
       setInterval(async () => {
-        if (this.hasError == true) {
+        if (this.hasError === true) {
           return false
         }
 
@@ -90,19 +90,18 @@ class OctoPrintProgressAction extends Action {
   /**
    * The stream deck tile has been pressed down.
    *
-   * @param {Object} evt
+   * @param {object} evt The event for the keyDown.
    */
   onKeyDown (evt) {
 
     this.buttonPressed = performance.now()
 
-    if (this.hasError == false) {
+    if (this.hasError === false) {
 
       if (this.webhost && this.didConnect === true) {
         StreamDeck.debug(`${this.actionUUID} Opening url to webhost ${this.webhost}.`)
         openUrl(this.webhost)
       } else {
-        console.log(this.webhost, this.didConnect)
         StreamDeck.debug(`${this.actionUUID} cannot open url cause: webhost not found.`)
         showAlert(this.context)
       }
@@ -112,13 +111,13 @@ class OctoPrintProgressAction extends Action {
   /**
    * The stream deck tile has been released.
    *
-   * @param {Object} evt
+   * @param {object} evt The event for the keyUp.
    */
   onKeyUp (evt) {
     let now = performance.now()
     let delta = now - this.buttonPressed
 
-    if (this.hasError == true && delta > this.resetInterval) {
+    if (this.hasError === true && delta > this.resetInterval) {
       setTitle(this.context, Localization.localizePluginText(this.actionUUID, 'reset'))
       showOk(this.context)
 

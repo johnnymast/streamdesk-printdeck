@@ -10,7 +10,7 @@ class OctoPrintRest {
   /**
    * Constructor with the webhost.
    *
-   * @param {string} }webhost The webhost of the OctoPrint instance.
+   * @param {string} webhost The webhost of the OctoPrint instance.
    */
   constructor (webhost) {
     this.webhost = webhost

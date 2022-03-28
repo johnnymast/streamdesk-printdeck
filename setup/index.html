@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="css/sdpi.css">
     <link rel="stylesheet" href="css/setup.css">
     <script src="../inspector/js/forms.js"></script>
+    <script src="../lib/localization.js"></script>
     <script src="../lib/misc.js"></script>
     <script src="js/setup.js"></script>
     <script src="js/api.js"></script>
-
     <style id="inline_style"></style>
 </head>
 <body>
@@ -20,47 +20,41 @@
                 <div style="text-align: center; margin-top:30px;">
                     <img src="img/logo.png"
                          style="height:150px; width: 150px; border-radius: 50%; border: 5px solid #ffffff;">
-                    <h1 style="font-size:50px; color:white; margin:10px;">OctoPrint</h1>
+                    <h1 style="font-size:50px; color:white; margin:10px;" class="inspector-translatable" data-text="OctoPrint"></h1>
                 </div>
-
                 <div class="sdpi-item" id="caution" style="display: none;  margin-bottom: 10px;">
                     <details class="message caution">
                         <summary id="caution_message"></summary>
                     </details>
                 </div>
-
                 <div class="sdpi-item" id="success" style="display: none; margin-bottom: 10px;">
                     <details class="message caution">
                         <summary id="success_message"></summary>
                     </details>
                 </div>
-
                 <div class="sdpi-item">
-                    <div class="sdpi-item-label">Host or IP</div>
-                    <input class="sdpi-item-value" id="host" type="text" value="octopi.local"
-                           placeholder="Could be octopi.local">
+                    <div class="sdpi-item-label inspector-translatable" data-text="Host or IP"></div>
+                    <input class="sdpi-item-value inspector-translatable" id="host" type="text" value="octopi.local"
+                           data-placeholder="Could be octopi.local">
                 </div>
-
                 <div class="sdpi-item">
-                    <div class="sdpi-item-label">Username</div>
-                    <input class="sdpi-item-value" id="username" type="text" value="admin"
-                           placeholder="Could be octopi.local">
+                    <div class="sdpi-item-label inspector-translatable" data-text="Username"></div>
+                    <input class="sdpi-item-value inspector-translatable" id="username" type="text" value="admin"
+                           data-placeholder="Could be octopi.local">
                 </div>
-
                 <div class="sdpi-item">
                     <div class="sdpi-item-label empty"></div>
-                    <button class="sdpi-item-value" id="save" type="submit" onclick="connect()">Connect</button>
+                    <button class="sdpi-item-value inspector-translatable" id="save" type="submit" onclick="connect()" data-text="Connect"></button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-
-  greetDeveloper("SETUP")
+  greetDeveloper('SETUP')
 
   window.addEventListener('keydown', (evt) => {
-    if (evt.keyCode === 13) {
+    if (evt.code === "Enter") {
       connect()
     }
   })
@@ -88,18 +82,25 @@
     }
   }
 
+  /**
+   * Connect with Octoprint.
+   */
   const connect = () => {
     const username = document.getElementById('username').value
     const host = document.getElementById('host').value
     return getApiKey('Print Deck', username, host)
   }
 
-  window.addEventListener("message", (evt) => {
-    let data = evt.data;
+  window.addEventListener('message', (evt) => {
+    let data = evt.data
 
     if (typeof data.type !== 'undefined') {
       if (data.type === 'colors') {
         injectCSS(data.colors)
+      }
+      if (data.type === 'localize') {
+        Localization.strings = data.strings
+        Localization.localizeInspector("setup")
       }
     }
   }, false)

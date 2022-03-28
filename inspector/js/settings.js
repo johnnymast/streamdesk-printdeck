@@ -23,6 +23,8 @@ const restoreSettings = (settings) => {
 /**
  * Save the inspector values (from the form) and send the values
  * to Stream Deck.
+ *
+ * @param {boolean} silent If true a message will be shown to the user.
  */
 const saveSettings = (silent = false) => {
   let payload = {}
@@ -36,11 +38,6 @@ const saveSettings = (silent = false) => {
     displayMessage('Changes are saved')
   }
   setSettings(payload)
-}
-
-const resetSettings = () => {
-  setSettings(null)
-  setGlobalSettings(null)
 }
 
 /**
@@ -94,6 +91,7 @@ const loadInspectorPage = (url, action) => {
       }
     }
   }
+
   xhttp.open('GET', url, true)
   xhttp.send()
 }

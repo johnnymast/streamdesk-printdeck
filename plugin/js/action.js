@@ -14,8 +14,8 @@ class Action {
    * Callback for actions to overwrite, so they get notified when
    * the button (key) is down.
    *
-   * @param {Object} evt The event object.
    * @public
+   * @param {object} event The event for the keyDown.
    */
   onKeyDown (event) {
     // This will be overwritten
@@ -25,8 +25,8 @@ class Action {
    * Callback for actions to overwrite, so they get notified when
    * the button (key) is up.
    *
-   * @param {Object} evt The event object.
    * @public
+   * @param {object} event The event for the keyUp.
    */
   onKeyUp (event) {
     // This will be overwritten

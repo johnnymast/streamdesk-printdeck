@@ -8,9 +8,6 @@
 StreamDeck.onConnected(() => {
   getGlobalSettings()
   getSettings()
-
-  // StreamDeck.registerAction(new ProgressAction)
-  // StreamDeck.registerAction(new OctoPrintOpenAction)
 })
 
 EventEmitter.on('willAppear', (evt) => {
@@ -41,7 +38,6 @@ EventEmitter.on('willAppear', (evt) => {
 EventEmitter.on('didReceiveGlobalSettings', (evt) => {
   if (evt.payload.settings.hosts) {
     Storage.set('hosts', evt.payload.settings.hosts)
-    EventEmitter.emit('com.johnnymast.printdeck.progress.start_polling')
   }
 })
 
@@ -49,7 +45,7 @@ EventEmitter.on('didReceiveGlobalSettings', (evt) => {
  * This function is called by the Elgato plugin engine. This is the entry point to
  * our plugin.
  *
- * @param {string} inPort The port used to create the WebSocket.
+ * @param {number} inPort The port used to create the WebSocket.
  * @param {string} inPluginUUID The unique identifier for this plugin.
  * @param {string} inRegisterEvent a string containing the register event to send to Stream Deck.
  * @param {string} inInfo  A JSON object containing information about the action.

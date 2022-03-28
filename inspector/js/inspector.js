@@ -7,22 +7,13 @@
 
 var instanceSettings = null
 
-/**
- * This function is called by the Elgato plugin engine. This is the entry point to
- * our plugin.
- *
- * @param {string} inPort The port used to create the WebSocket.
- * @param {string} inPluginUUID The unique identifier for this plugin.
- * @param {string} inApplicationInfo A JSON object containing information about the application.
- * @param {string} inActionInfo  A JSON object containing information about the action.
- */
-StreamDeck.onConnected(async () => {
+StreamDeck.onConnected(() => {
 
   window.addEventListener('message', (event) => {
 
     let data = JSON.parse(event.data)
 
-    if (data.source == 'connectToOctoPrint') {
+    if (data.source === 'connectToOctoPrint') {
       switch (data.type) {
         case 'key':
 
@@ -106,7 +97,7 @@ EventEmitter.on('didReceiveGlobalSettings', (evt) => {
  * This function is called by the Elgato plugin engine. This is the entry point to
  * our plugin.
  *
- * @param {string} inPort The port used to create the WebSocket.
+ * @param {number} inPort The port used to create the WebSocket.
  * @param {string} inPropertyInspectorUUID The unique identifier for this plugin.
  * @param {string} inRegisterEvent A JSON object containing information about the application.
  * @param {string} inInfo  A JSON object containing information about the application.

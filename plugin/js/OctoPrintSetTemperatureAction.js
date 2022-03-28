@@ -1,5 +1,5 @@
 /**
- @file      action.js
+ @file      OctoPrintSetTemperatureAction.js
  @brief     Print Deck Plugin
  @copyright (c) 2022, Johnny Mast
  @license   This source code is licensed under the MIT-style license found in the LICENSE file.
@@ -38,7 +38,7 @@ class OctoPrintSetTemperatureAction extends Action {
   /**
    * The stream deck tile has been released.
    *
-   * @param {Object} evt
+   * @param {object} evt The event for the keyUp.
    */
   onKeyUp (evt) {
     if (this.api) {

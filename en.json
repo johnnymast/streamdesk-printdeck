@@ -43,6 +43,18 @@
       "API Key": "API Key",
       "Connect": "Connect",
       "Press Connect to obtain": "Press Connect to obtain"
+    },
+    "setup": {
+      "Did you disable the Application key plugin?": "Did you disable the Application key plugin?",
+      "Could not request API key from Octprint.": "Could not request API key from Octprint.",
+      "Please login to Octprint to allow access": "Please login to Octprint to allow access",
+      "failed to connect to host": "Failed to connect to host",
+      "You waited to long": "You waited to long",
+      "OctoPrint": "OctoPrint",
+      "Host or IP": "Host or IP",
+      "Username": "Username",
+      "Could be octopi.local": "Could be octopi.local",
+      "Connect": "Connect"
     }
   },
   "plugin": {

@@ -39,7 +39,7 @@ class OctoPrintCooldownAction extends Action {
   /**
    * The stream deck tile has been released.
    *
-   * @param {Object} evt
+   * @param {object} evt The event for the keyUp.
    */
   onKeyUp (evt) {
     if (this.api) {
@@ -51,8 +51,6 @@ class OctoPrintCooldownAction extends Action {
       }).catch(() => {
         showAlert(this.context)
       })
-
-      console.log('onKeyUp')
     }
   }
 }

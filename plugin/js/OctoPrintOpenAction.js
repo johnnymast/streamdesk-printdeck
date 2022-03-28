@@ -26,7 +26,7 @@ class OctoPrintOpenAction extends Action {
   /**
    * The stream deck tile has been released.
    *
-   * @param {Object} evt
+   * @param {object} evt The event for the keyUp.
    */
   onKeyUp (evt) {
 
