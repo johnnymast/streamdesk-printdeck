@@ -16,7 +16,6 @@ StreamDeck.onConnected(() => {
     if (data.source === 'connectToOctoPrint') {
       switch (data.type) {
         case 'key':
-
           let select = document.getElementById('apikey')
           let host = document.getElementById('host')
 
@@ -31,7 +30,6 @@ StreamDeck.onConnected(() => {
           saveSettings()
           break
         case 'url':
-          console.log('openurl', data.url)
           openUrl(data.url)
           break
       }

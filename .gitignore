@@ -1,1 +1,2 @@
 .idea/
+DistributionTool.exe -b -i Sources/com.johnnymast.printdeck.sdPlugin -o Release

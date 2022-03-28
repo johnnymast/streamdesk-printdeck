@@ -7,7 +7,7 @@
   "Description": "See the progress of your 3d prints via Octoprint on your stream deck",
   "Category": "Print Deck",
   "CategoryIcon": "Images/categoryIcon",
-  "Icon": "octoprint-logo",
+  "Icon": "images/octoprint-logo",
   "URL": "https://github.com/johnnymast/printdeck",
   "Version": "1.0",
   "OS": [
