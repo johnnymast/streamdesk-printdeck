@@ -9,7 +9,7 @@ This repository contains the source code for the `Print Deck` plugin. The `Print
 - Cross-platform (macOS, Windows)
 - Localized
 
-![](screenshot.png)
+![screenshot](https://user-images.githubusercontent.com/121194/160437762-e687440d-42d9-48cb-b4ac-9c01e0f0171c.png)
 
 ## Important note
 
