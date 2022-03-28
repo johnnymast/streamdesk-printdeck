@@ -25,7 +25,7 @@ THe current version of the plugin allows for 2 actions winch are the following.
 - Cool down your printer with by slightly caressing a stream deck button,
 
 ## Installation
-In the [Release](Release) folder, you can find the file `com.johnnymast.printdeck.sdPlugin`. If you double-click this file on your machine, Stream Deck will install the plugin.
+In the [Release](Release) folder, you can find the file `com.johnnymast.printdeck.streamDeckPlugin`. If you double-click this file on your machine, Stream Deck will install the plugin.
 
 
 ## Source code
