@@ -18,7 +18,7 @@ class OctoPrintCooldownAction extends Action {
   constructor (context, settings) {
     super()
 
-    this.actionUUID = 'com.johnnymast.printdeck.octoprint_cooldown'
+    this.actionUUID = 'com.johnnymast.printdeck.octoprint.cooldown'
     this.settings = settings
     this.context = context
 

@@ -16,19 +16,19 @@ EventEmitter.on('willAppear', (evt) => {
     let context = StreamDeck.actionInfo.context
 
     switch (action) {
-      case 'com.johnnymast.printdeck.octoprint_progress':
+      case 'com.johnnymast.printdeck.octoprint.progress':
         StreamDeck.registerAction(context, new OctoPrintProgressAction(context, StreamDeck.actionInfo.payload.settings))
         break
 
-      case 'com.johnnymast.printdeck.octoprint_set_temperature':
+      case 'com.johnnymast.printdeck.octoprint.temperature':
         StreamDeck.registerAction(context, new OctoPrintSetTemperatureAction(context, StreamDeck.actionInfo.payload.settings))
         break
 
-      case 'com.johnnymast.printdeck.octoprint_cooldown':
+      case 'com.johnnymast.printdeck.octoprint.cooldown':
         StreamDeck.registerAction(context, new OctoPrintCooldownAction(context, StreamDeck.actionInfo.payload.settings))
         break
 
-      case 'com.johnnymast.printdeck.octoprint_openaction':
+      case 'com.johnnymast.printdeck.octoprint.openaction':
         StreamDeck.registerAction(context, new OctoPrintOpenAction(context, StreamDeck.actionInfo.payload.settings))
         break
     }

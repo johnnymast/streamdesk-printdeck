@@ -35,7 +35,7 @@
         }
       ],
       "SupportedInMultiActions": false,
-      "UUID": "com.johnnymast.printdeck.octoprint_progress"
+      "UUID": "com.johnnymast.printdeck.octoprint.progress"
     },
     {
       "Icon": "action/images/actionInstanceImage",
@@ -47,7 +47,7 @@
         }
       ],
       "SupportedInMultiActions": true,
-      "UUID": "com.johnnymast.printdeck.octoprint_openaction"
+      "UUID": "com.johnnymast.printdeck.octoprint.openaction"
     },
     {
       "Icon": "action/images/actionTemperatureImage",
@@ -59,7 +59,7 @@
         }
       ],
       "SupportedInMultiActions": true,
-      "UUID": "com.johnnymast.printdeck.octoprint_set_temperature"
+      "UUID": "com.johnnymast.printdeck.octoprint.temperature"
     },
     {
       "Icon": "action/images/actionCoolDownImage",
@@ -71,7 +71,7 @@
         }
       ],
       "SupportedInMultiActions": true,
-      "UUID": "com.johnnymast.printdeck.octoprint_cooldown"
+      "UUID": "com.johnnymast.printdeck.octoprint.cooldown"
     }
   ]
 }

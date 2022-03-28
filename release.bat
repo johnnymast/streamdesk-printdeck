@@ -1,0 +1,1 @@
+DistributionTool -b -i Sources/com.johnnymast.printdeck.sdPlugin -o Release

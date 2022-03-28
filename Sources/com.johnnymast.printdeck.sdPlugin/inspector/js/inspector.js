@@ -47,16 +47,16 @@ StreamDeck.onConnected(() => {
   instanceSettings = StreamDeck.actionInfo.payload.settings
   if (typeof StreamDeck.actionInfo.action !== 'undefined') {
     switch (StreamDeck.actionInfo.action) {
-      case 'com.johnnymast.printdeck.octoprint_progress':
+      case 'com.johnnymast.printdeck.octoprint.progress':
         loadInspectorPage('./octoprint_progress.html', StreamDeck.actionInfo.action)
         break
-      case 'com.johnnymast.printdeck.octoprint_openaction':
+      case 'com.johnnymast.printdeck.octoprint.openaction':
         loadInspectorPage('./octoprint_openaction.html', StreamDeck.actionInfo.action)
         break
-      case 'com.johnnymast.printdeck.octoprint_set_temperature':
+      case 'com.johnnymast.printdeck.octoprint.temperature':
         loadInspectorPage('./octoprint_set_temperature.html', StreamDeck.actionInfo.action)
         break
-      case 'com.johnnymast.printdeck.octoprint_cooldown':
+      case 'com.johnnymast.printdeck.octoprint.cooldown':
         loadInspectorPage('./octoprint_cooldown.html', StreamDeck.actionInfo.action)
         break
     }

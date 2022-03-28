@@ -2,35 +2,35 @@
   "Name": "Print Deck",
   "Description": "See the progress of your 3d prints via Octoprint on your stream deck",
   "Category": "Print Deck",
-  "com.johnnymast.printdeck.octoprint_progress": {
+  "com.johnnymast.printdeck.octoprint.progress": {
     "Name": "Show Print progress",
     "Tooltip": "Show the OctoPrint progression on your Stream Deck"
   },
-  "com.johnnymast.printdeck.octoprint_openaction": {
+  "com.johnnymast.printdeck.octoprint.openaction": {
     "Name": "Open OctoPrint page",
     "Tooltip": "Open your OctoPrint page in your web browser."
   },
-  "com.johnnymast.printdeck.octoprint_set_temperature": {
+  "com.johnnymast.printdeck.octoprint.temperature": {
     "Name": "Set temperature",
     "Tooltip": "Set the temperature for your printer."
   },
-  "com.johnnymast.printdeck.octoprint_cooldown": {
+  "com.johnnymast.printdeck.octoprint.cooldown": {
     "Name": "Cooldown",
     "Tooltip": "Cool down your printer."
   },
   "inspector": {
-    "com.johnnymast.printdeck.octoprint_openaction": {
+    "com.johnnymast.printdeck.octoprint.openaction": {
       "Host": "Host",
       "API Key": "API Key",
       "Connect": "Connect",
       "Press Connect to obtain": "Press Connect to obtain"
     },
-    "com.johnnymast.printdeck.octoprint_openaction": {
+    "com.johnnymast.printdeck.octoprint.openaction": {
       "Host": "Host",
       "Connect": "Connect",
       "Press Connect to obtain": "Press Connect to obtain"
     },
-    "com.johnnymast.printdeck.octoprint_set_temperature": {
+    "com.johnnymast.printdeck.octoprint.temperature": {
       "Host": "Host",
       "API Key": "API Key",
       "Connect": "Connect",
@@ -38,7 +38,7 @@
       "Hotend Temp": "Hotend Temp",
       "Bed Temp": "Bed Temp"
     },
-    "com.johnnymast.printdeck.octoprint_cooldown": {
+    "com.johnnymast.printdeck.octoprint.cooldown": {
       "Host": "Host",
       "API Key": "API Key",
       "Connect": "Connect",
@@ -58,7 +58,7 @@
     }
   },
   "plugin": {
-    "com.johnnymast.printdeck.octoprint_openaction": {
+    "com.johnnymast.printdeck.octoprint.openaction": {
       "There was an error connecting to webhost. Hold how the button on your Stream Deck for 3 seconds to try again.": "There was an error connecting to webhost. Hold how the button on your Stream Deck for 3 seconds to try again.",
       "reset": "reset",
       "error": "error"

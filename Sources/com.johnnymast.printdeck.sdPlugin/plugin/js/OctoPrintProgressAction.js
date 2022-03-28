@@ -21,7 +21,7 @@ class OctoPrintProgressAction extends Action {
     // TODO: Maybe add websockets connection?
     // http://localhost:23654/
 
-    this.actionUUID = 'com.johnnymast.printdeck.octoprint_progress'
+    this.actionUUID = 'com.johnnymast.printdeck.octoprint.progress'
     this.settings = settings
     this.context = context
     this.resetInterval = 2000 // 2 seconds

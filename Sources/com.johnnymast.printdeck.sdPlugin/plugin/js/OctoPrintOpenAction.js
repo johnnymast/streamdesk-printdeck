@@ -18,7 +18,7 @@ class OctoPrintOpenAction extends Action {
   constructor (context, settings) {
     super()
 
-    this.actionUUID = 'com.johnnymast.printdeck.octoprint_openaction'
+    this.actionUUID = 'com.johnnymast.printdeck.octoprint.openaction'
     this.context = context
     this.settings = settings
   }
